@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import Topheader from './Components/topheader'
 import CardContainer from './Components/CardContainer'
@@ -8,9 +8,15 @@ import CategoriesList from './Components/Categories'
 import OptionList from './Components/OptionList'
 
 export default function App() {
-  const [modal, setModal] = useState(false)
   const [showcountry, setShowCountry] = useState(false)
   const [showcategory, setShowCategory] = useState(false)
+
+  const [category,setCategory] = ("general") // Default India In
+  const [country,setCountry] = ("in")  // Default India In
+
+  // useEffect(()=>{
+
+  // },[country,category])
 
 
   return (
