@@ -1,25 +1,16 @@
 import React from 'react'
 import { StyleSheet, Text, View,Image } from 'react-native'
 
-export default function Card() {
+export default function Card(data) {
     return (
         <>
         <View style={styles.container}>
             <Image 
                 style={styles.thumbnail}
-                source={{uri:'https://images.indianexpress.com/2021/06/Modi-16-1.jpg'}}
+                source={data.urlToImage}
             />
         <Text style={styles.title} numberOfLines={2}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est eum laudantium magnam sed sunt aperiam mollitia esse
-        </Text>
-        </View>
-        <View style={styles.container}>
-            <Image 
-                style={styles.thumbnail}
-                source={{uri:'https://images.newindianexpress.com/uploads/user/imagelibrary/2021/8/13/w900X450/Mamata_Banerjee_PTI.jpg?w=400&dpr=2.6'}}
-            />
-        <Text style={styles.title} numberOfLines={2}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est eum laudantium magnam sed sunt aperiam mollitia esse
+            {data.title}
         </Text>
         </View>
     </>
@@ -45,7 +36,8 @@ const styles = StyleSheet.create({
     title:{
         fontWeight:'600',
         fontSize:16,
-        marginTop:8
+        marginTop:8,
+        minHeight:50
     }
 
 })

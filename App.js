@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from 'react'
 import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import axios from 'axios'
+
 import Topheader from './Components/topheader'
 import CardContainer from './Components/CardContainer'
 
@@ -8,16 +10,42 @@ import CategoriesList from './Components/Categories'
 import OptionList from './Components/OptionList'
 
 export default function App() {
+
+  const [loading,setLoading]= useState(false);
+  const [newsData, setNewsData] = useState([]);
+  const [error, setError]= useState(false);
+
+
   const [showcountry, setShowCountry] = useState(false)
   const [showcategory, setShowCategory] = useState(false)
 
-  const [category,setCategory] = ("general") // Default India In
-  const [country,setCountry] = ("in")  // Default India In
+  const [category,setCategory] = useState("general") // Default India In
+  const [country,setCountry] = useState("in")  // Default India In
 
-  // useEffect(()=>{
+  const FetchTheNews = () => {
+    setLoading(true)
+    setError(false)
+    axios({
+        headers:{'Content-Type': 'application/json',},
+        method: 'GET',
+        url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/2}`,
+    })
+        .then((response) => {
+            console.log(response.data);
+            setNewsData(response.data.articles);
+            setLoading(false);
+        })
+        .catch((error) => {
+            console.error(error);
+            setError(true)
+        })
+}
 
-  // },[country,category])
+useEffect(() => {
+  FetchTheNews();
+},[country,category]);
 
+console.log(category)
 
   return (
     <>
@@ -57,7 +85,7 @@ export default function App() {
           </TouchableOpacity>
           </View>
           {CategoriesList.map((item) => (
-            <OptionList key={item} data={item} />
+            <OptionList key={item} data={item} onPress={() => {setCategory(`${item}`);}}/>
           ))}
 
         </ScrollView>
@@ -70,12 +98,16 @@ export default function App() {
           </TouchableOpacity>
           </View>
           {CountriesList.map((item) => (
-            <OptionList key={item.code} data={item.country} />
+            <OptionList key={item.code} data={item.country} onPress={() => {setCountry(`${item.code}`);setShowCountry(!showcountry)}}/>
           ))}
 
         </ScrollView>
         :
-        <CardContainer />
+        newsData.map((data) => {
+          return (<>
+              <CardContainer key={data.title} urlToImage={data.urlToImage} title={data.title} url={data.url} />
+          </>)
+      })
       }
     </>
   )
