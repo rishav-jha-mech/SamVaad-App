@@ -4,12 +4,12 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 export default function OptionList(props) {
     return (
         <TouchableOpacity
-            style={styles.butt}
+            style={optionListItem.butt}
         >
             <Text
-                style={styles.thetext}
+                style={optionListItem.thetext}
             >
-                {props.data}</Text>
+                {props.item}</Text>
         </TouchableOpacity>
     )
 }
@@ -20,7 +20,7 @@ export default function OptionList(props) {
     }
 </style>
 */}
-const styles = StyleSheet.create({
+const optionListItem = StyleSheet.create({
     butt: {
         backgroundColor: 'rgba(255,255,255,0.5)',
         marginVertical: 5,
