@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { ScrollView, StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity, FlatList } from 'react-native'
 import axios from 'axios'
 
 import Topheader from './Components/topheader'
@@ -8,6 +8,7 @@ import CardContainer from './Components/CardContainer'
 import CountriesList from './Components/Countries'
 import CategoriesList from './Components/Categories'
 import OptionList from './Components/OptionList'
+import Card from './Components/Card'
 
 export default function App() {
 
@@ -103,11 +104,7 @@ console.log(category)
 
         </ScrollView>
         :
-        newsData.map((data) => {
-          return (<>
-              <CardContainer key={data.title} urlToImage={data.urlToImage} title={data.title} url={data.url} />
-          </>)
-      })
+        <FlatList data={newsData} keyExtractor={(item,index)=> 'key' + index} renderItem={({item})=>{return (<Card item ={item}/>)}} />
       }
     </>
   )
@@ -125,6 +122,10 @@ const styles = StyleSheet.create({
     maxHeight: 100,
     backgroundColor: "#333"
   },
+  Images:{
+    width:'100%',
+    minHeight:200,
+  }
 })
 
 const choose = StyleSheet.create({

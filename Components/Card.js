@@ -1,16 +1,16 @@
 import React from 'react'
 import { StyleSheet, Text, View,Image } from 'react-native'
 
-export default function Card(data) {
+export default function Card({item}) {
     return (
         <>
         <View style={styles.container}>
             <Image 
                 style={styles.thumbnail}
-                source={data.urlToImage}
+                source={{uri: item.urlToImage }}
             />
-        <Text style={styles.title} numberOfLines={2}>
-            {data.title}
+        <Text style={styles.title} numberOfLines={3}>
+            {item.title}
         </Text>
         </View>
     </>
