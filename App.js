@@ -10,6 +10,10 @@ import CategoriesList from './Components/Categories'
 import OptionList from './Components/OptionList'
 import Card from './Components/Card'
 
+
+import Error from './Components/Error'
+
+
 export default function App() {
 
   const [loading,setLoading]= useState(false);
@@ -32,12 +36,11 @@ export default function App() {
         url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/2}`,
     })
         .then((response) => {
-            console.log(response.data);
+            // console.log(response.data);
             setNewsData(response.data.articles);
             setLoading(false);
         })
         .catch((error) => {
-            console.error(error);
             setError(true)
         })
 }
@@ -46,7 +49,7 @@ useEffect(() => {
   FetchTheNews();
 },[country,category]);
 
-console.log(category)
+console.log(error)
 
   return (
     <>
@@ -103,6 +106,9 @@ console.log(category)
           ))}
 
         </ScrollView>
+        :
+        error ?
+        <Error />
         :
         <FlatList data={newsData} keyExtractor={(item,index)=> 'key' + index} renderItem={({item})=>{return (<Card item ={item}/>)}} />
       }
