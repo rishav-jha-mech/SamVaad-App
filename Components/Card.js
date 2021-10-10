@@ -1,10 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image } from 'react-native'
+import { StyleSheet, Text, View,Image, Pressable } from 'react-native'
 
 export function Card({item}) {
     return (
         <>
-        <View style={styles.container}>
+        <Pressable style={styles.container} onPress={() => console.log("Clicked !")}>
             <Image 
                 style={styles.thumbnail}
                 source={{uri: item.urlToImage }}
@@ -12,7 +12,7 @@ export function Card({item}) {
         <Text style={styles.title} numberOfLines={3}>
             {item.title}
         </Text>
-        </View>
+        </Pressable>
     </>
     )
 }

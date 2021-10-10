@@ -2,19 +2,11 @@ import React, { useState,useEffect } from 'react'
 import { ScrollView, StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList } from 'react-native'
 import axios from 'axios'
 
-import { AsyncStorage } from 'react-native';
-
 import Topheader from './Components/topheader'
-// import CardContainer from './Components/CardContainer'
-
-// import CountriesList from './Components/Countries'
-// import CategoriesList from './Components/Categories'
-import OptionList from './Components/OptionList'
 import {Card} from './Components/Card'
 
-
-import Error from './Components/Error'
 import LoadingCard from './Components/LoadingCard'
+import Error from './Components/Error'
 
 
 export default function App() {
