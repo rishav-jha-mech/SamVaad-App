@@ -3,9 +3,8 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-
-import OpenWeb from './Components/OpenWeb'
 import Home from './Screens/Home'
+import OpenWeb from './Components/OpenWeb'
 
 const Stack = createStackNavigator();
 
