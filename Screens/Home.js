@@ -69,7 +69,7 @@ useEffect(() => {
     <>
       <Topheader/>
 
-
+    {error ? <></> :
       <View style={Select.container}>
         <TouchableOpacity
           style={Select.button}
@@ -92,7 +92,7 @@ useEffect(() => {
           </Text>
         </TouchableOpacity>
       </View>
-
+    }
 
 
       {showcategory ?
