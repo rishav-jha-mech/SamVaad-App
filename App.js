@@ -13,8 +13,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import OpenWeb from './Components/OpenWeb'
 
-import Modal from './Components/Modal'
-
 function Home({navigation}) {
 
   const [loading,setLoading]= useState(false);
