@@ -45,7 +45,7 @@ function Home({navigation}) {
     axios({
         headers:{'Content-Type': 'application/json',},
         method: 'GET',
-        url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/20}`,
+        url: `https://samavaad-api.herokuapp.com/api/${country}/${category}/20}`,
     })
         .then((response) => {
             // console.log(response.data);

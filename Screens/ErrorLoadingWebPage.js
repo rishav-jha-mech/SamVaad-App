@@ -6,10 +6,11 @@ import { useNavigation } from '@react-navigation/native';
 
 const ErrorLoadingWebPage = () => {
     const navigation = useNavigation();
-    // https://www.monstersandcritics.com/wp-content/uploads/2016/03/secret-life-of-pets-happy-easter.jpg
+
     return (
         <ScrollView style={styles.Container}>
-            <Image style={styles.ErrorImage} source={{uri : 'https://capestylemag.com/wp-content/uploads/2018/04/Snowball-from-The-Secret-Life-of-Pets.jpg'}} />
+            <Image style={styles.ErrorImage} source={require ('../Components/images/SnowBallCurious.jpg')} />
+
             <Text style={styles.bigText}>
                 Error Loading Page !
             </Text>
@@ -20,7 +21,7 @@ const ErrorLoadingWebPage = () => {
                 or try checking your internet connection.
             </Text>
             <Pressable style={styles.but} onPress={() => {navigation.navigate('Home')} }>
-            <Text style={styles.butText}> Go To Home </Text>
+                <Text style={styles.butText}> Go To Home </Text>
             </Pressable>
         </ScrollView>
     )
@@ -34,9 +35,9 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     ErrorImage:{
-        minHeight: 320,
+        height: 320,
+        width:'100%',
         borderRadius:18,
-        resizeMode:'cover',
     },
     bigText:{
         fontSize: 35,

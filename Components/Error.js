@@ -1,9 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, ScrollView, RefreshControl, Image } from 'react-native'
+import { StyleSheet, Text, ScrollView, RefreshControl, Image, View } from 'react-native'
 
-
-// https://i.pinimg.com/originals/8b/4e/b1/8b4eb142d86b7a1992186bc8175c23e4.jpg
-// https://pbs.twimg.com/media/D9vBoveU0AAyNcw.jpg
 
 function Error( { ErrorOnRefresh } ) {
 
@@ -25,7 +22,7 @@ function Error( { ErrorOnRefresh } ) {
                 />
             }>
 
-            <Image style={styles.ErrorImage} source={{uri : 'https://i.pinimg.com/originals/8b/4e/b1/8b4eb142d86b7a1992186bc8175c23e4.jpg'}} />
+            <Image style={styles.ErrorImage} source={require ('./images/SnowBallSad.jpg')} />
 
             <Text style={styles.BigText}>
                 Error Fetching News
@@ -35,10 +32,11 @@ function Error( { ErrorOnRefresh } ) {
                 Try checking your internet connection and try again.
             </Text>
 
-            
-            <Text style={styles.SmallText}>
-                Swipe Down To Reload.
-            </Text>
+            <View Pressable style={styles.but} >
+                <Text style={styles.butText}>
+                    Swipe Down To Reload.
+                </Text>
+            </View>
 
         </ScrollView>
     )
@@ -49,16 +47,16 @@ const styles = StyleSheet.create({
 
     Container: {
         flex: 1,
-        backgroundColor: '#ff56',
+        // backgroundColor: '#ff56',
         paddingHorizontal: 2,
         paddingVertical:16,
         paddingHorizontal:16,
 
     },
     ErrorImage:{
-        minHeight: 340,
+        maxHeight: 350,
         width: '100%',
-        borderRadius: 16,
+        borderRadius: 18,
     },
     BigText: {
         fontSize: 36,
@@ -72,9 +70,20 @@ const styles = StyleSheet.create({
         fontSize: 21,
         fontWeight:'700',
         textAlign:'center',
-        marginBottom: 60,
         color:'#333'
+    },
+    but:{
+        marginTop: 40,
+        backgroundColor:'#6f00ff',
+        paddingVertical: 12,
+        borderRadius: 10,
+        elevation: 5,
+    },
+    butText:{
+        fontSize:18,
+        textAlign:'center',
+        fontWeight:'700',
+        color:'white',
     }
-
 })
 
