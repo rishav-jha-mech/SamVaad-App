@@ -6,12 +6,14 @@ import Topheader from './Components/topheader'
 import {Card} from './Components/Card'
 
 import LoadingCard from './Components/LoadingCard'
-import Error from './Components/Error'
+// import Error from './Components/Error'
 
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import OpenWeb from './Components/OpenWeb'
+
+import Modal from './Components/Modal'
 
 function Home({navigation}) {
 
@@ -39,7 +41,7 @@ function Home({navigation}) {
   const [showcountry, setShowCountry] = useState(false)
   const [showcategory, setShowCategory] = useState(false)
 
-  const [category,setCategory] = useState("general") // Default India In
+  const [category,setCategory] = useState("general") // Default Category General
   const [country,setCountry] = useState("in")  // Default India In
 
   const FetchTheNews = () => {
@@ -407,11 +409,25 @@ useEffect(() => {
 
         </ScrollView>
         :
+        error ?
+        <ScrollView
+            style={Error.Container}
+            contentContainerStyle={Error.scrollView}
+            refreshControl={
+                <RefreshControl
+                    onRefresh={onRefresh}
+                />
+            }>
+            <Text style={Error.Message}>
+                Error Fetching The News
+            </Text>
+            <Text style={Error.Message}>
+                Try Checking your internet connection and try again
+            </Text>
+        </ScrollView>
+        :
         loading ?
         <LoadingCard />
-        :
-        error ?
-        <Error />
         :
         <FlatList 
           data={newsData}
@@ -539,4 +555,23 @@ const optionListItem = StyleSheet.create({
       fontWeight:'700',
       textTransform:'uppercase'
   }
+})
+
+
+const Error = StyleSheet.create({
+
+    Container: {
+        flex: 1,
+        backgroundColor: '#ff56',
+        paddingHorizontal: 2,
+        paddingVertical: '50%',
+
+    },
+    Message: {
+        fontSize: 22,
+        fontWeight: '700',
+        textAlign: 'center',
+        marginBottom: 8,
+    }
+
 })
