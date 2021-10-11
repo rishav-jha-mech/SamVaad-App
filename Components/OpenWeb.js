@@ -18,7 +18,7 @@ export default function OpenWeb( { route } ) {
           :
 
           <WebView
-            source = {{ uri: 'http:hsrerjhse.com' }}
+            source = {{ uri: (urlToWebSite) }}
             style={styles.container}
             javaScriptEnabled={true}
             onError={() => setError(true)}

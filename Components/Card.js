@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,Image, Pressable, } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
 
-export function Card({item}) {
+export default function Card({item}) {
     const navigation = useNavigation();
 
     return (

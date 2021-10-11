@@ -1,13 +1,13 @@
-import React, { useState,useEffect } from 'react'
-import { ScrollView, StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList, Button } from 'react-native'
+import React, { useState,useEffect,useRef } from 'react'
+import { ScrollView, StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList, Pressable } from 'react-native'
 import axios from 'axios'
 
+
 import Topheader from '../Components/topheader'
-import {Card} from '../Components/Card'
+import Card from '../Components/Card'
 
 import LoadingCard from '../Components/LoadingCard'
 import Error from '../Components/Error'
-
 
 function Home({navigation}) {
 
@@ -45,7 +45,7 @@ function Home({navigation}) {
     axios({
         headers:{'Content-Type': 'application/json',},
         method: 'GET',
-        url: `https://samavaad-api.herokuapp.com/api/${country}/${category}/20}`,
+        url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/20}`,
     })
         .then((response) => {
             // console.log(response.data);
@@ -54,7 +54,7 @@ function Home({navigation}) {
             setRefreshing(false);
         })
         .catch((error) => {
-            setError(true)
+            // setError(true)
         })
 }
 
@@ -62,9 +62,19 @@ useEffect(() => {
   FetchTheNews();
   setShowCategory(false);
   setShowCountry(false);
+  console.log(flatlistRef.viewPosition)
+
 },[country,category,onRefresh]);
 
+// For Scroll To Top
 
+const flatlistRef = useRef();
+
+const onPressFunction = () => {
+    flatlistRef.current.scrollToIndex({index: 0});
+};
+
+// For Scroll To Top
   return (
     <>
       <Topheader/>
@@ -411,17 +421,44 @@ useEffect(() => {
         loading ?
         <LoadingCard />
         :
+        <>
         <FlatList 
           data={newsData}
           keyExtractor={(item,index)=> 'key' + index}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-          renderItem={({item})=>{return (<Card item ={item}/>)}} />
+          renderItem={({item})=>{return (<Card item ={item}/>)}} 
+          ref={flatlistRef}
+
+        />
+            <Pressable style={ScrollToTop.button} onPress={onPressFunction}>
+                <Text style={ScrollToTop.arrow}>^</Text>
+            </Pressable>
+        </>
       }
     </>
   )
 }
 
 export default Home;
+
+const ScrollToTop = StyleSheet.create({
+    button: {
+      position: 'absolute',
+      width:  50,
+      height: 50,
+      borderRadius: 50 / 2,
+      backgroundColor: '#6f00ff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      right:  20,
+      bottom: 20,
+      elevation:10
+    },
+    arrow: {
+      color: '#fff',
+      fontSize: 50,
+    },
+  });
 
 const styles = StyleSheet.create({
     container: {
@@ -446,9 +483,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#f5f6',
       paddingTop: 3,
       paddingBottom: 100,
-      paddingHorizontal: 8,
-      // paddingTop:50,
-  
+      paddingHorizontal: 8,  
     }
   })
   
