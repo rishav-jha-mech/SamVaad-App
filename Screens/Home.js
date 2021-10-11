@@ -18,10 +18,7 @@ function Home({navigation}) {
 // Refreshing Option
 
   const [refreshing, setRefreshing] = React.useState(false);
-    
-  const wait = (timeout) => {
-    return new Promise(resolve => setTimeout(resolve, timeout));
-  }
+
   const onRefresh = React.useCallback(() => {
     FetchTheNews();
     setRefreshing(true);
@@ -45,7 +42,7 @@ function Home({navigation}) {
     axios({
         headers:{'Content-Type': 'application/json',},
         method: 'GET',
-        url: `hattps://samvaad-api.herokuapp.com/api/${country}/${category}/20}`,
+        url: `httpsaaasamvaad-api.herokuapp.com/api/${country}/${category}/20}`,
     })
         .then((response) => {
             // console.log(response.data);

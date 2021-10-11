@@ -17,9 +17,9 @@ const App = () => {
                 headerShown: false
             }}
             >
+            <Stack.Screen name="Founder" component={Founder} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Web" component={OpenWeb} />
-            <Stack.Screen name="Founder" component={Founder} />
         </Stack.Navigator>
     </NavigationContainer>
     )
