@@ -1,21 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, ScrollView, RefreshControl } from 'react-native'
-import { useNavigation } from '@react-navigation/native';
   
-const wait = (timeout) => {
-    return new Promise(resolve => setTimeout(resolve, timeout));
-  }
 
-function Error() {
-
-    const navigation = useNavigation();
+function Error( { ErrorOnRefresh } ) {
 
     const [refreshing, setRefreshing] = React.useState(false);
 
     const onRefresh = React.useCallback(() => {
         setRefreshing(true);
-        navigation.navigate('Home');
-        wait(2000).then(() => setRefreshing(false));
+        ErrorOnRefresh();
     }, []);
 
     return (

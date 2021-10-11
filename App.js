@@ -6,7 +6,7 @@ import Topheader from './Components/topheader'
 import {Card} from './Components/Card'
 
 import LoadingCard from './Components/LoadingCard'
-// import Error from './Components/Error'
+import Error from './Components/Error'
 
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -72,6 +72,8 @@ useEffect(() => {
   return (
     <>
       <Topheader/>
+
+
       <View style={Select.container}>
         <TouchableOpacity
           style={Select.button}
@@ -408,21 +410,7 @@ useEffect(() => {
         </ScrollView>
         :
         error ?
-        <ScrollView
-            style={Error.Container}
-            contentContainerStyle={Error.scrollView}
-            refreshControl={
-                <RefreshControl
-                    onRefresh={onRefresh}
-                />
-            }>
-            <Text style={Error.Message}>
-                Error Fetching The News
-            </Text>
-            <Text style={Error.Message}>
-                Try Checking your internet connection and try again
-            </Text>
-        </ScrollView>
+        <Error ErrorOnRefresh = {onRefresh} />
         :
         loading ?
         <LoadingCard />
@@ -555,21 +543,3 @@ const optionListItem = StyleSheet.create({
   }
 })
 
-
-const Error = StyleSheet.create({
-
-    Container: {
-        flex: 1,
-        backgroundColor: '#ff56',
-        paddingHorizontal: 2,
-        paddingVertical: '50%',
-
-    },
-    Message: {
-        fontSize: 22,
-        fontWeight: '700',
-        textAlign: 'center',
-        marginBottom: 8,
-    }
-
-})
