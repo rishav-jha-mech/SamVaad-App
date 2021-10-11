@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Home from './Screens/Home'
 import OpenWeb from './Components/OpenWeb'
+import Founder from './Screens/Founder';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const App = () => {
             >
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Web" component={OpenWeb} />
+            <Stack.Screen name="Founder" component={Founder} />
         </Stack.Navigator>
     </NavigationContainer>
     )

@@ -45,7 +45,7 @@ function Home({navigation}) {
     axios({
         headers:{'Content-Type': 'application/json',},
         method: 'GET',
-        url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/20}`,
+        url: `hattps://samvaad-api.herokuapp.com/api/${country}/${category}/20}`,
     })
         .then((response) => {
             // console.log(response.data);
@@ -54,7 +54,7 @@ function Home({navigation}) {
             setRefreshing(false);
         })
         .catch((error) => {
-            // setError(true)
+            setError(true)
         })
 }
 
@@ -75,7 +75,7 @@ const onPressFunction = () => {
 // For Scroll To Top
   return (
     <>
-      <Topheader/>
+      <Topheader SendToFounder={() => navigation.navigate("Founder")}/>
 
     {error ? <></> :
       <View style={Select.container}>
