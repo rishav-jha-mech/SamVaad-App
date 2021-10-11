@@ -1,18 +1,31 @@
 import React from 'react'
-import { StyleSheet, Text, View,Image, Pressable } from 'react-native'
+import { StyleSheet, Text, View,Image, TouchableOpacity, } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
+
 
 export function Card({item}) {
+    const navigation = useNavigation();
+
     return (
         <>
-        <Pressable style={styles.container} onPress={() => console.log("Clicked !")}>
+        <TouchableOpacity style={styles.container} 
+              onPress={() => {
+                navigation.navigate('Web', {
+                  itemId: item.title,
+                  urlToWebSite: item.url,
+                });
+              }}
+            >
+
             <Image 
                 style={styles.thumbnail}
                 source={{uri: item.urlToImage }}
             />
+
         <Text style={styles.title} numberOfLines={3}>
             {item.title}
         </Text>
-        </Pressable>
+        </TouchableOpacity>
     </>
     )
 }
@@ -32,6 +45,7 @@ const styles = StyleSheet.create({
         width:'100%',
         borderRadius: 10,
         marginVertical: 5,
+        backgroundColor:'#999',
     },
     title:{
         fontWeight:'600',

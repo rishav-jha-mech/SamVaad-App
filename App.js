@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { ScrollView, StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList, Button } from 'react-native'
 import axios from 'axios'
 
 import Topheader from './Components/topheader'
@@ -9,7 +9,11 @@ import LoadingCard from './Components/LoadingCard'
 import Error from './Components/Error'
 
 
-export default function App() {
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import OpenWeb from './Components/OpenWeb'
+
+function Home({navigation}) {
 
   const [loading,setLoading]= useState(false);
   const [newsData, setNewsData] = useState([]);
@@ -68,7 +72,6 @@ useEffect(() => {
   return (
     <>
       <Topheader/>
-
       <View style={Select.container}>
         <TouchableOpacity
           style={Select.button}
@@ -419,6 +422,26 @@ useEffect(() => {
     </>
   )
 }
+const Stack = createStackNavigator();
+
+const App = () => {
+    return (
+    <NavigationContainer>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+            >
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Web" component={OpenWeb} />
+
+        </Stack.Navigator>
+    </NavigationContainer>
+    )
+}
+
+export default App
+
 
 const styles = StyleSheet.create({
   container: {
