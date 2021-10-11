@@ -62,8 +62,6 @@ useEffect(() => {
   FetchTheNews();
   setShowCategory(false);
   setShowCountry(false);
-  console.log(flatlistRef.viewPosition)
-
 },[country,category,onRefresh]);
 
 // For Scroll To Top
