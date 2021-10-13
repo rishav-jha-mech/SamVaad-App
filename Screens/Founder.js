@@ -1,11 +1,14 @@
 import React from 'react'
-import { Pressable, Text, View, ScrollView, Image, ImageBackground, Button, TouchableOpacity } from 'react-native'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faAddressCard, faArrowLeft, } from '@fortawesome/free-solid-svg-icons'
-import { faFacebook, faFacebookF, faGithub, faGithubAlt, faInstagram, faInstagramSquare, faLinkedinIn, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
-import { Dimensions } from 'react-native'
+import { Pressable, Text, View, ScrollView, Image, ImageBackground, TouchableOpacity, Share,Dimensions } from 'react-native'
 import styles from './MyStyles'
-import {Share} from 'react-native' // For The Share Button
+
+// Fonts from Font Awesome
+
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faArrowLeft, } from '@fortawesome/free-solid-svg-icons'
+import { faFacebookF, faGithub, faInstagram, faLinkedinIn, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
+
+// Fonts from Font Awesome
 
 const Founder = ({ navigation }) => {
 
@@ -53,7 +56,7 @@ const Founder = ({ navigation }) => {
                         <Pressable style={[styles.Facebook,styles.icons]}><FontAwesomeIcon icon={faFacebookF}   color={'white'}    size={22}           /></Pressable>
                         <Pressable style={[styles.Instagram,styles.icons]}><FontAwesomeIcon icon={faInstagram}  color={'#ff156f'}    size={26}           /></Pressable>
                         <Pressable style={[styles.Github,styles.icons]}><FontAwesomeIcon icon={faGithub}        color={'white'}    size={28}           /></Pressable>
-                        <Pressable style={[styles.Linkedin,styles.icons]}><FontAwesomeIcon icon={faLinkedinIn}        color={'white'}    size={24}           /></Pressable>
+                        <Pressable style={[styles.Linkedin,styles.icons]}><FontAwesomeIcon icon={faLinkedinIn}  color={'white'}    size={24}           /></Pressable>
                         <Pressable style={[styles.Whatsapp,styles.icons]}><FontAwesomeIcon icon={faWhatsapp}    color={'white'}    size={26}           /></Pressable>
                     </View>
                 </View>
