@@ -11,7 +11,7 @@ import Error from '../Components/Error'
 // Fonts from Font Awesome
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faArrowAltCircleUp, faArrowLeft, faArrowUp, } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 // Fonts from Font Awesome
 
@@ -76,6 +76,7 @@ const onPressFunction = () => {
 };
 
 // For Scroll To Top
+const STORAGE_KEY = '@save_country'
   return (
     <>
       <Topheader SendToFounder={() => navigation.navigate("Founder")}/>
