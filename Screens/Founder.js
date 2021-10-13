@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pressable, Text, View, ScrollView, Image, ImageBackground, TouchableOpacity, Share,Dimensions } from 'react-native'
+import { Pressable, Text, View, ScrollView, Image, ImageBackground, TouchableOpacity, Share,Dimensions,Linking } from 'react-native'
 import styles from './MyStyles'
 
 // Fonts from Font Awesome
@@ -12,11 +12,10 @@ import { faFacebookF, faGithub, faInstagram, faLinkedinIn, faWhatsapp } from "@f
 
 const Founder = ({ navigation }) => {
 
-    const windowWidth = Dimensions.get('window').width;
-    const windowHeight = Dimensions.get('window').height;
     const bgpic1 = { uri: "https://i.pinimg.com/736x/a3/77/dc/a377dc63e6359b0af98451eec36fc023.jpg" };
     const bgpic2 = { uri: "https://www.personality-database.com/profile_images/30000.png" };
   
+    // To share the Website to other platforms
     const shareSamVaad = async () => {
         try {
           const result = await Share.share({
@@ -35,6 +34,30 @@ const Founder = ({ navigation }) => {
           alert(error.message);
         }
     };
+    // To share the Website to other platforms
+
+    // My Social Media URLS
+
+    const facebookURL = "https://www.facebook.com/profile.php?id=100057462975710"
+    const instagramURL = "https://www.instagram.com/r.i.s.h.a.v.j.h.a/"
+    const githubURL = "https://github.com/rishav-jha-mech"
+    const linkedinURL = "https://www.linkedin.com/in/rishav-jha-549b45203"
+    const whatsappURL = "https://api.whatsapp.com/send?text=Hello%20Rishav%2c%0AI%20have%20come%20here%20from%20your%20SamVaad%20app%2E😏&phone=917439876937"
+    
+    // My Social Media URLS
+
+    // There is, a very small probability that i wili either chane or delete my social media profiles so thi will not cause any error
+    // Unless the sites i mentioned here, goes down.
+
+    // To let the user visit my social media profiles
+    const Facebook  = () =>{   Linking.openURL(facebookURL).catch((err) =>  alert('Link Not Available Right Now.', err));}
+    const Instagram = () =>{   Linking.openURL(instagramURL).catch((err) => alert('Link Not Available Right Now.', err));}
+    const Github    = () =>{   Linking.openURL(githubURL).catch((err) =>    alert('Link Not Available Right Now.', err));}
+    const Linkedin  = () =>{   Linking.openURL(linkedinURL).catch((err) =>  alert('Link Not Available Right Now.', err));}
+    const Whatsapp  = () =>{   Linking.openURL(whatsappURL).catch((err) =>  alert('Link Not Available Right Now.', err));}
+
+    // To let the user visit my social media profiles
+
     return (
         <View style={styles.container}>
             
@@ -53,11 +76,11 @@ const Founder = ({ navigation }) => {
                     <Text style={styles.primaryText}> Rishav Jha </Text>
                     <Text style={styles.secondaryText}> Full Stack Web &amp; App Developer</Text>
                     <View style={styles.SMcontainer}>
-                        <Pressable style={[styles.Facebook,styles.icons]}><FontAwesomeIcon icon={faFacebookF}   color={'white'}    size={22}           /></Pressable>
-                        <Pressable style={[styles.Instagram,styles.icons]}><FontAwesomeIcon icon={faInstagram}  color={'#ff156f'}    size={26}           /></Pressable>
-                        <Pressable style={[styles.Github,styles.icons]}><FontAwesomeIcon icon={faGithub}        color={'white'}    size={28}           /></Pressable>
-                        <Pressable style={[styles.Linkedin,styles.icons]}><FontAwesomeIcon icon={faLinkedinIn}  color={'white'}    size={24}           /></Pressable>
-                        <Pressable style={[styles.Whatsapp,styles.icons]}><FontAwesomeIcon icon={faWhatsapp}    color={'white'}    size={26}           /></Pressable>
+                        <Pressable  onPress={Facebook}      style={[styles.Facebook,styles.icons]}><FontAwesomeIcon icon={faFacebookF}   color={'white'}    size={22}           /></Pressable>
+                        <Pressable  onPress={Instagram}     style={[styles.Instagram,styles.icons]}><FontAwesomeIcon icon={faInstagram}  color={'#ff156f'}    size={26}           /></Pressable>
+                        <Pressable  onPress={Github}        style={[styles.Github,styles.icons]}><FontAwesomeIcon icon={faGithub}        color={'white'}    size={28}           /></Pressable>
+                        <Pressable  onPress={Linkedin}      style={[styles.Linkedin,styles.icons]}><FontAwesomeIcon icon={faLinkedinIn}  color={'white'}    size={24}           /></Pressable>
+                        <Pressable  onPress={Whatsapp}      style={[styles.Whatsapp,styles.icons]}><FontAwesomeIcon icon={faWhatsapp}    color={'white'}    size={26}           /></Pressable>
                     </View>
                 </View>
                 <View style={styles.Children2}>
