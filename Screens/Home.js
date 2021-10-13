@@ -2,7 +2,6 @@ import React, { useState,useEffect,useRef } from 'react'
 import { ScrollView, StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList, Pressable } from 'react-native'
 import axios from 'axios'
 
-
 import Topheader from '../Components/topheader'
 import Card from '../Components/Card'
 
