@@ -9,6 +9,13 @@ import Card from '../Components/Card'
 import LoadingCard from '../Components/LoadingCard'
 import Error from '../Components/Error'
 
+// Fonts from Font Awesome
+
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faArrowAltCircleUp, faArrowLeft, faArrowUp, } from '@fortawesome/free-solid-svg-icons'
+
+// Fonts from Font Awesome
+
 function Home({navigation}) {
 
   const [loading,setLoading]= useState(false);
@@ -426,7 +433,7 @@ const onPressFunction = () => {
 
         />
             <Pressable style={ScrollToTop.button} onPress={onPressFunction}>
-                <Text style={ScrollToTop.arrow}>^</Text>
+                <FontAwesomeIcon icon={faArrowUp} color={'white'} size={22} />
             </Pressable>
         </>
       }
@@ -448,10 +455,6 @@ const ScrollToTop = StyleSheet.create({
       right:  20,
       bottom: 20,
       elevation:10
-    },
-    arrow: {
-      color: '#fff',
-      fontSize: 50,
     },
   });
 
