@@ -193,7 +193,11 @@ const styles = StyleSheet.create({
         height: 45,
         width:  45,
         borderRadius: 22.5,
-        marginHorizontal: 7
+        marginHorizontal: 7,
+        elevation: 10,
+        shadowColor: "#ff156f",
+        shadowOpacity: 1,
+        shadowRadius: 1000,
     },
     Facebook:{
         backgroundColor:'#3b5998',
