@@ -64,22 +64,32 @@ const styles = StyleSheet.create({
         color:'#ccd6f6',
         textAlign:'center',
         fontSize: 38,
-        fontWeight:'700'
+        fontWeight:'700',
+        textShadowColor: 'rgba(0, 0, 0, 0.60)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius:15,
+        letterSpacing:1
     },
     secondaryText:{
         color:'rgba(225,255,255,0.8)',
         textAlign:'center',
         fontSize: 17,
         fontWeight:'700',
-        letterSpacing:1
+        letterSpacing:1,
+        
+        textShadowColor: 'rgba(0, 0, 0, 0.80)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius:15
     },
     primaryHeading:{
         color:'rgba(225,255,255,0.8)',
         fontSize: 28,
         fontWeight:'700',
         letterSpacing: 2,
-        marginVertical:10
-
+        marginVertical:10,
+        textShadowColor: 'rgba(0, 0, 0, 0.60)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius:15,
     },
     textContainer:{
         backgroundColor:'rgba(0,0,0,0.5)',
@@ -88,7 +98,10 @@ const styles = StyleSheet.create({
         borderRadius:12,
         elevation:5,
         paddingVertical:12,
-        paddingHorizontal:16
+        paddingHorizontal:16,
+        textShadowColor: 'rgba(0, 0, 0, 0.60)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius:15,
     },
     normalText:{
         fontSize:15,
@@ -97,7 +110,7 @@ const styles = StyleSheet.create({
     },
     skillsContainer:{
         padding:8,
-        backgroundColor:'rgba(10, 25, 47, 0.8)',
+        backgroundColor:'rgba(0,0,0,0.5)',
         borderRadius:12,
         display:'flex',
         justifyContent:'center',
@@ -107,6 +120,7 @@ const styles = StyleSheet.create({
         paddingVertical:12,
         paddingHorizontal:16,
         marginVertical:14,
+        elevation:5,
 
     },
     skillsElement:{
@@ -119,8 +133,50 @@ const styles = StyleSheet.create({
         paddingVertical: 8,
         backgroundColor:'#233554',
         letterSpacing: 1,
-        elevation:5
-    }
+        elevation:5,
+    },
+    samvaadContainer:{
+        backgroundColor:'rgba(0,0,0,0.5)',
+        minHeight:200,
+        marginVertical:14,
+        borderRadius:12,
+        elevation:5,
+        paddingVertical:12,
+        paddingHorizontal:16,
+        textShadowColor: 'rgba(0, 0, 0, 0.60)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius:15,
+        marginHorizontal: 3
+    },
+    samvaadText:{
+        color:'#64ffda',
+        letterSpacing:1,
+        lineHeight:22,
+        fontSize:15,
+    },
+    lastContainer:{
+        marginBottom:100,
+    },
+    Thebuttons:{
+        backgroundColor: '#0a192f',
+        paddingVertical:10,
+        paddingHorizontal:20,
+        marginVertical:5,
+        marginHorizontal: 10,
+        borderRadius:8,
+        justifyContent:'center',
+        alignItems:'center',
+        elevation:10,
+    },
+    buttext:{
+        color:'lightblue',
+        fontWeight:'700',
+        flex:1
+    },
+    row:{
+        flexDirection:'row',
+        justifyContent:'center',
+    },
 
 });
 
