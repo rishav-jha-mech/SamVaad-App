@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faArrowLeft, } from '@fortawesome/free-solid-svg-icons'
 import { Dimensions } from 'react-native'
 import styles from './MyStyles'
-
+import {Share} from 'react-native' // For The Share Button
 
 const Founder = ({ navigation }) => {
 
@@ -12,7 +12,25 @@ const Founder = ({ navigation }) => {
     const windowHeight = Dimensions.get('window').height;
     const bgpic1 = { uri: "https://i.pinimg.com/736x/a3/77/dc/a377dc63e6359b0af98451eec36fc023.jpg" };
     const bgpic2 = { uri: "https://www.personality-database.com/profile_images/30000.png" };
-
+  
+    const shareSamVaad = async () => {
+        try {
+          const result = await Share.share({
+            message:"Visit the website to get Latest News From 7 categories accross 50+ around in the world \n \n https://samvaad.pages.dev\n\n*Our App is Available now, you can download it directly from our website*",
+          });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } else {
+              // shared
+            }
+          } else if (result.action === Share.dismissedAction) {
+            // dismissed
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+    };
     return (
         <View style={styles.container}>
             
@@ -89,9 +107,9 @@ const Founder = ({ navigation }) => {
                             <Text style={styles.buttext}>Read Blogs</Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={styles.Thebuttons} onPress={() =>{console.log("Shared !")}}>
+                    <Pressable style={styles.Thebuttons} onPress={shareSamVaad}>
                         <Text style={styles.buttext}>Share SamVaad</Text>
-                    </TouchableOpacity>
+                    </Pressable>
                 </View>
             </ScrollView>
 
