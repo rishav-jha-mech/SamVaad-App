@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         fontSize:15,
     },
     lastContainer:{
-        marginBottom:100,
+        paddingBottom: 70,
     },
     Thebuttons:{
         backgroundColor: '#0a192f',
@@ -167,6 +167,9 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         elevation:10,
+        shadowColor: "lightblue",
+        shadowOpacity: 1,
+        shadowRadius: 100,
     },
     buttext:{
         color:'lightblue',
@@ -177,7 +180,37 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'center',
     },
-
+    SMcontainer:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        padding:16,
+        minHeight:40
+    },
+    icons:{
+        justifyContent:'center',
+        alignItems:'center',
+        height: 45,
+        width:  45,
+        borderRadius: 22.5,
+        marginHorizontal: 7
+    },
+    Facebook:{
+        backgroundColor:'#3b5998',
+    },
+    Instagram:{
+        backgroundColor:'#fff'
+    },
+    Whatsapp:{
+        backgroundColor:'#25D366'
+    },
+    Github:{
+        backgroundColor:'#444'
+    },
+    Linkedin:{
+        backgroundColor:'#0077b5'
+    }
 });
 
-export default styles;
+
+export default styles

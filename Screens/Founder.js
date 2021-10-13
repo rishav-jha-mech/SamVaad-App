@@ -1,7 +1,8 @@
 import React from 'react'
 import { Pressable, Text, View, ScrollView, Image, ImageBackground, Button, TouchableOpacity } from 'react-native'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faArrowLeft, } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard, faArrowLeft, } from '@fortawesome/free-solid-svg-icons'
+import { faFacebook, faFacebookF, faGithub, faGithubAlt, faInstagram, faInstagramSquare, faLinkedinIn, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 import { Dimensions } from 'react-native'
 import styles from './MyStyles'
 import {Share} from 'react-native' // For The Share Button
@@ -39,7 +40,7 @@ const Founder = ({ navigation }) => {
                     <Text style={styles.Heading}> Developed By </Text>
             </Pressable>
 
-            <ScrollView style={[styles.Scrollview]}>
+            <ScrollView style={styles.Scrollview}>
 
                 <View style={styles.Children1}>
 
@@ -48,7 +49,13 @@ const Founder = ({ navigation }) => {
                     {/* <Text style={styles.TheText}> ऋषभ झा </Text> */}
                     <Text style={styles.primaryText}> Rishav Jha </Text>
                     <Text style={styles.secondaryText}> Full Stack Web &amp; App Developer</Text>
-
+                    <View style={styles.SMcontainer}>
+                        <Pressable style={[styles.Facebook,styles.icons]}><FontAwesomeIcon icon={faFacebookF}   color={'white'}    size={22}           /></Pressable>
+                        <Pressable style={[styles.Instagram,styles.icons]}><FontAwesomeIcon icon={faInstagram}  color={'#ff156f'}    size={26}           /></Pressable>
+                        <Pressable style={[styles.Github,styles.icons]}><FontAwesomeIcon icon={faGithub}        color={'white'}    size={28}           /></Pressable>
+                        <Pressable style={[styles.Linkedin,styles.icons]}><FontAwesomeIcon icon={faLinkedinIn}        color={'white'}    size={24}           /></Pressable>
+                        <Pressable style={[styles.Whatsapp,styles.icons]}><FontAwesomeIcon icon={faWhatsapp}    color={'white'}    size={26}           /></Pressable>
+                    </View>
                 </View>
                 <View style={styles.Children2}>
                     <Text style={styles.primaryHeading}> About Me </Text>
@@ -79,7 +86,7 @@ const Founder = ({ navigation }) => {
                         <Text style={styles.skillsElement}>C++</Text>
                     </View>
                 </View>
-                <View style={styles.Children2,styles.lastContainer}>
+                <View style={[styles.Children2,styles.lastContainer]}>
                 <Text style={styles.primaryHeading}> About Samvaad </Text>
                     <View style={styles.samvaadContainer}>
                         <Text style={styles.samvaadText}>
@@ -112,7 +119,6 @@ const Founder = ({ navigation }) => {
                     </Pressable>
                 </View>
             </ScrollView>
-
 
             <ImageBackground
                 style={[styles.fixed, styles.container, {zIndex: -1}]}
