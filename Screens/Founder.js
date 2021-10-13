@@ -1,6 +1,6 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Pressable, Text, View, ScrollView, Image, ImageBackground, TouchableOpacity, Share,Dimensions,Linking } from 'react-native'
-import styles from './MyStyles'
+import styles from '../Components/Styles/FounderStyles'
 
 // Fonts from Font Awesome
 
@@ -11,6 +11,8 @@ import { faFacebookF, faGithub, faInstagram, faLinkedinIn, faWhatsapp } from "@f
 // Fonts from Font Awesome
 
 const Founder = ({ navigation }) => {
+
+    const [togg,setTogg] = useState(false)
 
     const bgpic = { uri: "https://i.pinimg.com/736x/a3/77/dc/a377dc63e6359b0af98451eec36fc023.jpg" };
     const myPic = { uri: "https://www.personality-database.com/profile_images/30000.png" };
@@ -71,9 +73,13 @@ const Founder = ({ navigation }) => {
                 <View style={styles.Children1}>
 
                     <Image style={styles.ProfilePic} source={myPic} />
-                    
-                    {/* <Text style={styles.TheText}> ऋषभ झा </Text> */}
+                    <TouchableOpacity onPress={() => setTogg(!togg)}>
+                    {togg ?
+                    <Text style={styles.primaryText}> ऋषभ झा </Text>
+                    :
                     <Text style={styles.primaryText}> Rishav Jha </Text>
+                    }
+                    </TouchableOpacity>
                     <Text style={styles.secondaryText}> Full Stack Web &amp; App Developer</Text>
                     <View style={styles.SMcontainer}>
                         <Pressable  onPress={Facebook}      style={[styles.Facebook,styles.icons]}><FontAwesomeIcon icon={faFacebookF}   color={'white'}    size={22}           /></Pressable>
