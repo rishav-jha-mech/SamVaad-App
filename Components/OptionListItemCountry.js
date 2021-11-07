@@ -1,8 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
-const OptionListItem = (data) => {
-    console.log(data)
+const OptionListItemCountry = (data) => {
     return (
         <TouchableOpacity style={styles.butt} onPress={() => data.setTheCountry(data.CountryCode)}>
             <Text style={styles.thetext}>
@@ -12,20 +11,23 @@ const OptionListItem = (data) => {
     )
 }
 
-export default OptionListItem
+export default OptionListItemCountry
 
 const styles = StyleSheet.create({
     butt: {
         backgroundColor: 'rgba(255,255,255,0.5)',
-        marginVertical: 5,
-        paddingVertical: 12,
-        borderRadius: 16
+        borderRadius: 8,
+        paddingVertical: 16,
+        backgroundColor:'#6f00ff',
+        marginVertical: 8,
+        marginHorizontal: 24,
     },
     thetext: {
-        fontSize: 18,
-        color: '#666',
+        fontSize: 16,
+        color: '#fff',
         textAlign: 'center',
         fontWeight: '700',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        letterSpacing: 1
     }
 })

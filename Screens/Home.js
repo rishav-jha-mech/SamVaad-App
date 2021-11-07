@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { ScrollView, StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList, Pressable } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList, Pressable, Modal } from 'react-native'
 import axios from 'axios'
 
 import Topheader from '../Components/topheader'
@@ -55,7 +55,7 @@ function Home({ navigation }) {
         axios({
             headers: { 'Content-Type': 'application/json', },
             method: 'GET',
-            url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/20}`,
+            url: `https://samvaad-api.herokuappa.com/api/${country}/${category}/20}`,
         })
             .then((response) => {
                 // console.log(response.data);
@@ -64,8 +64,8 @@ function Home({ navigation }) {
                 setRefreshing(false);
             })
             .catch((error) => {
-                setError(true)
-                console.error(error)
+                // setError(true)
+                // console.error(error)
             })
     }
 
@@ -88,7 +88,6 @@ function Home({ navigation }) {
     return (
         <>
             <Topheader SendToFounder={() => navigation.navigate("Founder")} />
-
             {error ? <></> :
                 <View style={Select.container}>
                     <TouchableOpacity
@@ -116,36 +115,45 @@ function Home({ navigation }) {
 
 
             {showcategory ?
-                <ScrollView style={choose.select}>
-                    <View style={Times.timesContainer}>
-                        <TouchableOpacity style={Times.button} onPress={() => { setShowCategory(!showcategory); }}>
-                            <Text style={Times.timesX}>&times;</Text>
-                        </TouchableOpacity>
-                    </View>
-                    {CategoriesList.map((data, index) => {
-                        return (
-                            <OptionListItemCategory key={index} data={data} setTheCategory={(TheCategory) => setCategory(TheCategory)} />
-                        )
-                    })}
-
-                </ScrollView>
-                :
-                showcountry ?
-                    <ScrollView style={choose.select}>
-                        <View style={Times.timesContainer}>
-                            <TouchableOpacity style={Times.button} onPress={() => { setShowCountry(!showcountry) }}>
-                                <Text style={Times.timesX}>&times;</Text>
-                            </TouchableOpacity>
-                        </View>
-                        {CountriesList.map((data, index) => {
-                            return (
-                                <OptionListItemCountry key={index} CountryCode={data.CountryCode} CountryName={data.CountryName} setTheCountry={(CountryCode) => setCountry(CountryCode)} />
-                            )
-                        })}
-
-                    </ScrollView>
-                    :
-                    error ?
+                <Modal 
+                    visible={true}
+                    transparent={true}
+                >
+                    <Pressable style={choose.innerContainer} onPress={() => setShowCategory(!showcategory)}>
+                        <ScrollView style={choose.ScrollContainer}>
+                            <Pressable>
+                                <Text style={choose.Header}>Select Category</Text>
+                                    {CategoriesList.map((data, index) => {
+                                        return (
+                                            <OptionListItemCategory key={index} data={data} setTheCategory={(TheCategory) => setCategory(TheCategory)} />
+                                        )
+                                    })}
+                            </Pressable>
+                        </ScrollView>
+                    </Pressable>
+                </Modal>
+            :<></>}
+                {showcountry ?
+                <Modal 
+                    visible={true}
+                    transparent={true}
+                >
+                    <Pressable style={choose.innerContainer} onPress={() => setShowCountry(!showcountry)}>
+                            <ScrollView style={choose.ScrollContainer}>
+                                <Pressable>
+                                    <Text style={choose.Header}>Select Country</Text>
+                                        {CountriesList.map((data, index) => {
+                                            return (
+                                                <OptionListItemCountry key={index} CountryCode={data.CountryCode} CountryName={data.CountryName} setTheCountry={(CountryCode) => setCountry(CountryCode)} />
+                                            )
+                                        })}
+                                </Pressable>
+                            </ScrollView>
+                    </Pressable>
+                </Modal>
+                    :<></>}
+                    
+                    {error ?
                         <Error ErrorOnRefresh={onRefresh} />
                         :
                         loading ?
@@ -187,11 +195,28 @@ const ScrollToTop = StyleSheet.create({
 });
 
 const choose = StyleSheet.create({
-    select: {
-        backgroundColor: '#f5f6',
-        paddingTop: 3,
-        paddingBottom: 100,
-        paddingHorizontal: 8,
+    ScrollContainer: {
+        backgroundColor: '#fff',
+        width:'100%',
+        minHeight:'75%',
+        maxHeight:'81%',
+        borderRadius: 6,
+        elevation:8,
+    },
+    innerContainer:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'rgba(0,0,0,0.2)',
+        paddingHorizontal: 14
+    },
+    Header:{
+        fontSize: 32,
+        fontWeight:'700',
+        marginVertical: 20,
+        color:'#000',
+        textAlign:'center',
+        letterSpacing:0.5
     }
 })
 
@@ -218,31 +243,5 @@ const Select = StyleSheet.create({
         fontWeight: '600',
         color: '#fff',
         textTransform: 'capitalize'
-    }
-})
-
-const Times = StyleSheet.create({
-    timesContainer: {
-
-        borderRadius: 8,
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'flex-end',
-    },
-    button: {
-        width: 70,
-        // backgroundColor:'#fff',
-        height: 53
-    },
-    timesX: {
-        textAlign: 'right',
-        paddingVertical: 0,
-        paddingHorizontal: 8,
-        fontSize: 55,
-        fontWeight: '800',
-        color: '#6f00ff',
-        position: 'relative',
-        top: -18,
     }
 })
