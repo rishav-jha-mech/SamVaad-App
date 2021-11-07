@@ -46,6 +46,8 @@ function Home({ navigation }) {
     const [category, setCategory] = useState("general") // Default Category General
     const [country, setCountry] = useState("in")  // Default India In
 
+    const [showup,setShowup] = useState(false) // Hook for arrow up button
+
     const FetchTheNews = () => {
         setLoading(true);
         setError(false);
@@ -72,17 +74,16 @@ function Home({ navigation }) {
         setShowCategory(false);
         setShowCountry(false);
     }, [country, category, onRefresh]);
-
+    
     // For Scroll To Top
 
     const flatlistRef = useRef();
 
-    const onPressFunction = () => {
-        flatlistRef.current.scrollToIndex({ index: 0 });
+    const scrollToTop = () => {
+        flatlistRef.current.scrollToOffset({ animated: true,offset:0 });
     };
 
     // For Scroll To Top
-
     return (
         <>
             <Topheader SendToFounder={() => navigation.navigate("Founder")} />
@@ -139,11 +140,21 @@ function Home({ navigation }) {
                             refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
                             renderItem={({ item }) => { return (<Card item={item} />) }}
                             ref={flatlistRef}
-
+                            onScroll={(data) => {
+                                if (data.nativeEvent.contentOffset.y >= 600) {
+                                    setShowup(true)
+                                }else{
+                                    setShowup(false)
+                                }
+                            }
+                            
+                            }
                         />
-                        <Pressable style={ScrollToTop.button} onPress={onPressFunction}>
-                            <FontAwesomeIcon icon={faArrowUp} color={'white'} size={22} />
-                        </Pressable>
+                        {showup ? 
+                            <Pressable style={ScrollToTop.button} onPress={scrollToTop}>
+                                <FontAwesomeIcon icon={faArrowUp} color={'white'} size={22} />
+                            </Pressable>
+                        :<></>}
                     </>
             }
         </>
