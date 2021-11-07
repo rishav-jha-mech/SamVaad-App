@@ -9,6 +9,7 @@ const ShowCategory = (props) => {
             visible={true}
             transparent={true}
             animationType={'fade'}
+            onRequestClose={() => props.setShow(false)}
         >
             <Pressable style={choose.innerContainer} onPress={() => props.setShow(false)}>
                 <ScrollView style={choose.ScrollContainer}>
