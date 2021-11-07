@@ -18,19 +18,22 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 // Container of Countries and & Categories
 import ShowCountry from '../Components/ShowCountry'
 import ShowCategory from '../Components/ShowCategory'
+import ShowResults from '../Components/ShowResults'
 // Container of Countries and & Categories
 
-function Home({ navigation }) {
+function Home() {
 
     const [loading, setLoading] = useState(false);
     const [newsData, setNewsData] = useState([]);
     const [error, setError] = useState(false);
     const [showcountry, setShowCountry] = useState(false)
     const [showcategory, setShowCategory] = useState(false)
+    const [showup,setShowup] = useState(false) // Hook for arrow up button
+    const [showResults, setshowResults] = useState(false)
     const [category, setCategory] = useState("general") // Default Category General
     const [country, setCountry] = useState("in")  // Default India In
-    const [showup,setShowup] = useState(false) // Hook for arrow up button
     const [results, setResults] = useState()
+    const [noOfResults, setNoOfResults] = useState(20)
 
     const [refreshing, setRefreshing] = useState(false);
 
@@ -51,7 +54,7 @@ function Home({ navigation }) {
         axios({
             headers: { 'Content-Type': 'application/json', },
             method: 'GET',
-            url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/20}`,
+            url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/${noOfResults}}`,
         })
             .then((response) => {
                 // console.log(response.data);
@@ -70,7 +73,8 @@ function Home({ navigation }) {
         FetchTheNews();
         setShowCategory(false);
         setShowCountry(false);
-    }, [country, category, onRefresh]);
+        setshowResults(false);
+    }, [country, category, noOfResults, onRefresh]);
     
     // For Scroll To Top
 
@@ -81,11 +85,13 @@ function Home({ navigation }) {
     };
 
     // For Scroll To Top
+    
     return (
         <>
             <Topheader 
               results={results}
               isError ={error}
+              setshowResults = {(show) => setshowResults(show)}
             />
             {error ? <></> :
                 <View style={Select.container}>
@@ -126,6 +132,13 @@ function Home({ navigation }) {
                     setShow={(show) => setShowCountry(show)}
                 />
                 : <></>}
+            {showResults ? 
+                <ShowResults
+                    NoOfNews= {noOfResults}
+                    settheResult={(number) => setNoOfResults(number)}
+                    setShow={(show) => setshowResults(show)}
+                />
+            :<></>}
 
             {error ?
                 <Error ErrorOnRefresh={onRefresh} />

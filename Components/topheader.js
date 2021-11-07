@@ -1,10 +1,13 @@
 import React from 'react'
 import { StyleSheet, Text, Pressable, Image } from 'react-native'
+import { useNavigation } from '@react-navigation/native';
 
-export default function topheader(props) {
+export default function topheader( props ) {
+
+    const navigation = useNavigation();
 
     return (
-        <Pressable style={styles.Container}>
+        <Pressable style={styles.Container} onPress={() => navigation.navigate("Founder")}>
 
             <Image style={styles.logo}
                 source = {{ uri:'https://samvaad.pages.dev/SamVaadLogo.png' }}
@@ -13,11 +16,11 @@ export default function topheader(props) {
             <Text style={styles.Samvaad}>SamVaad</Text>
 
             {props.isError ? <></> : // If there is any error this badge will not be shown
-                <Pressable style={styles.resultsContainer}>
+                <Pressable style={styles.resultsContainer} onPress={() => props.setshowResults(true)}>
                     <Text style={styles.resultsText}>{props.results}</Text>
                 </Pressable>
             }
-            
+
         </Pressable>
     )
 }
