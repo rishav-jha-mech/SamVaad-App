@@ -17,7 +17,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 // Lists of Countries and & Categories
 import CountriesList from '../Components/CountriesList'
-
+import CategoriesList from '../Components/CategoriesList'
 // Lists of Countries and & Categories
 
 function Home({navigation}) {
@@ -63,6 +63,7 @@ function Home({navigation}) {
         })
         .catch((error) => {
             setError(true)
+            console.error(error)
         })
 }
 
@@ -81,8 +82,6 @@ const onPressFunction = () => {
 };
 
 // For Scroll To Top
-
-console.log(JSON.stringify(CountriesList,null,4))
 
   return (
     <>
@@ -121,28 +120,13 @@ console.log(JSON.stringify(CountriesList,null,4))
             <Text style={Times.timesX}>&times;</Text>
           </TouchableOpacity>
           </View>
-
-        <TouchableOpacity style={optionListItem.butt} onPress={()=> setCategory("general")}> 
-          <Text style={optionListItem.thetext}>general</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={optionListItem.butt} onPress={()=> setCategory("business")}> 
-          <Text style={optionListItem.thetext}>business</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={optionListItem.butt} onPress={()=> setCategory("entertainment")}> 
-          <Text style={optionListItem.thetext}>entertainment</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={optionListItem.butt} onPress={()=> setCategory("health")}> 
-          <Text style={optionListItem.thetext}>health</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={optionListItem.butt} onPress={()=> setCategory("science")}> 
-          <Text style={optionListItem.thetext}>science</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={optionListItem.butt} onPress={()=> setCategory("sports")}> 
-          <Text style={optionListItem.thetext}>sports</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={optionListItem.butt} onPress={()=> setCategory("technology")}> 
-          <Text style={optionListItem.thetext}>technology</Text>
-        </TouchableOpacity>
+        {CategoriesList.map((data,index) =>{
+            return(
+            <TouchableOpacity key={index} style={optionListItem.butt} onPress={()=> setCategory("general")}> 
+                <Text style={optionListItem.thetext}>{data}</Text>
+            </TouchableOpacity>
+            )
+        })}
 
         </ScrollView>
         :
