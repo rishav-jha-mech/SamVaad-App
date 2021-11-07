@@ -15,15 +15,15 @@ const ShowResults = (props) => {
                 <ScrollView style={choose.ScrollContainer}>
                     <Pressable>
                         <Text style={choose.Header}>Select Number Of Results</Text>                        
-                        <Text style={choose.subHeader}> Currently : </Text>
-                        {NoOfNewsList.map((data) => {
-                            if (props.NoOfNews == data.Number)
+                        {/* <Text style={choose.subHeader}> Currently : </Text> */}
+                        {/* {NoOfNewsList.map((data) => {
+                            if (props.NoOfNews <= data.Number)
                                 return (
                                     <Text style={choose.CurrentItem}>
                                         {data.Letter}
                                     </Text>
                                 )
-                        })}
+                        })} */}
                         {NoOfNewsList.map((data, index) => {
                             if (props.NoOfNews != data.Number)
                             return(
@@ -50,8 +50,9 @@ const choose = StyleSheet.create({
     ScrollContainer: {
         backgroundColor: '#fff',
         width:'100%',
-        minHeight:'65%',
-        maxHeight:'75%',
+        // minHeight:'65%',
+        // maxHeight:'75%',
+        maxHeight: '63%',
         borderRadius: 6,
         elevation:8,
     },

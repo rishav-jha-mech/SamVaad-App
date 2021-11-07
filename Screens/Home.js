@@ -32,8 +32,7 @@ function Home() {
     const [showResults, setshowResults] = useState(false)
     const [category, setCategory] = useState("general") // Default Category General
     const [country, setCountry] = useState("in")  // Default India In
-    const [noOfResults, setNoOfResults] = useState(20)
-    const [results, setResults] = useState(0)
+    const [numberOfNews, setnumberOfNews] = useState(20)
 
     const [refreshing, setRefreshing] = useState(false);
 
@@ -42,29 +41,27 @@ function Home() {
         setRefreshing(true);
         setCountry(country);
         setCategory(category);
-        setResults(results);
-        setNoOfResults(noOfResults);
+        setnumberOfNews(numberOfNews);
     }, []);
 
     // Refreshing Option
 
     const FetchTheNews = () => {
-        setResults(0)
-        console.log("Before Fetching THe News The NOofResults = ", noOfResults)
+        console.log("Before Fetching THe News The numberOfNews = ", numberOfNews)
         setLoading(true);
         setError(false);
         setRefreshing(true);
         axios({
             headers: { 'Content-Type': 'application/json', },
             method: 'GET',
-            url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/${noOfResults}}`,
+            // url: `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&pageSize=${numberOfNews}&apiKey=626b4e8c1a044baa8bb856256dba2315`,
+            url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/${numberOfNews}`
         })
             .then((response) => {
                 // console.log(JSON.stringify(response.data,null,4));
                 setNewsData(response.data.articles);
                 setLoading(false);
                 setRefreshing(false);
-                setResults(response.data.articles.length)
             })
             .catch((error) => {
                 setError(true)
@@ -77,7 +74,7 @@ function Home() {
         setShowCategory(false);
         setShowCountry(false);
         setshowResults(false);
-    }, [country, category, noOfResults, onRefresh]);
+    }, [country, category, numberOfNews, onRefresh]);
     
     // For Scroll To Top
 
@@ -88,11 +85,11 @@ function Home() {
     };
 
     // For Scroll To Top
-    // console.log("Downhere => ",noOfResults)
+    console.log(numberOfNews)
     return (
         <>
             <Topheader 
-              results={results}
+              results={newsData.length}
               isError ={error}
               setshowResults = {(show) => setshowResults(show)}
             />
@@ -137,8 +134,8 @@ function Home() {
                 : <></>}
             {showResults ? 
                 <ShowResults
-                    NoOfNews= {noOfResults}
-                    settheResult={(number) => setNoOfResults(number)}
+                    NoOfNews= {newsData.length}
+                    settheResult={(number) => setnumberOfNews(number)}
                     setShow={(show) => setshowResults(show)}
                 />
             :<></>}
