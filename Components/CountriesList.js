@@ -1,6 +1,6 @@
 const CountriesList = [
     {
-        CounrtyCode: "in",
+        CountryCode: "in",
         CountryName: "India(in)"
     },
     {

@@ -18,6 +18,8 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 // Lists of Countries and & Categories
 import CountriesList from '../Components/CountriesList'
 import CategoriesList from '../Components/CategoriesList'
+import OptionListItemCountry from '../Components/OptionListItemCountry'
+import OptionListItemCategory from '../Components/OptionListItemCategory'
 // Lists of Countries and & Categories
 
 function Home({ navigation }) {
@@ -122,9 +124,7 @@ function Home({ navigation }) {
                     </View>
                     {CategoriesList.map((data, index) => {
                         return (
-                            <TouchableOpacity key={index} style={optionListItem.butt} onPress={() => setCategory("general")}>
-                                <Text style={optionListItem.thetext}>{data}</Text>
-                            </TouchableOpacity>
+                            <OptionListItemCategory key={index} data={data} setTheCategory={(TheCategory) => setCategory(TheCategory)} />
                         )
                     })}
 
@@ -139,11 +139,7 @@ function Home({ navigation }) {
                         </View>
                         {CountriesList.map((data, index) => {
                             return (
-                                <TouchableOpacity key={index} style={optionListItem.butt} onPress={() => setCountry(data.CountryCode)}>
-                                    <Text style={optionListItem.thetext}>
-                                        {data.CountryName}
-                                    </Text>
-                                </TouchableOpacity>
+                                <OptionListItemCountry key={index} CountryCode={data.CountryCode} CountryName={data.CountryName} setTheCountry={(CountryCode) => setCountry(CountryCode)} />
                             )
                         })}
 
@@ -250,21 +246,3 @@ const Times = StyleSheet.create({
         top: -18,
     }
 })
-
-
-const optionListItem = StyleSheet.create({
-    butt: {
-        backgroundColor: 'rgba(255,255,255,0.5)',
-        marginVertical: 5,
-        paddingVertical: 12,
-        borderRadius: 16
-    },
-    thetext: {
-        fontSize: 18,
-        color: '#666',
-        textAlign: 'center',
-        fontWeight: '700',
-        textTransform: 'uppercase'
-    }
-})
-
