@@ -20,6 +20,7 @@ import CountriesList from '../Components/CountriesList'
 import CategoriesList from '../Components/CategoriesList'
 import OptionListItemCountry from '../Components/OptionListItemCountry'
 import OptionListItemCategory from '../Components/OptionListItemCategory'
+import ShowCountry from '../Components/ShowCountry'
 // Lists of Countries and & Categories
 
 function Home({ navigation }) {
@@ -55,7 +56,7 @@ function Home({ navigation }) {
         axios({
             headers: { 'Content-Type': 'application/json', },
             method: 'GET',
-            url: `https://samvaad-api.herokuappa.com/api/${country}/${category}/20}`,
+            url: `https://samvaad-api.heraokuapp.com/api/${country}/${category}/20}`,
         })
             .then((response) => {
                 // console.log(response.data);
@@ -134,36 +135,13 @@ function Home({ navigation }) {
                     </Pressable>
                 </Modal>
             :<></>}
-                {showcountry ?
-                <Modal 
-                    visible={true}
-                    transparent={true}
-                    animationType={'fade'}
-                >
-                    <Pressable style={choose.innerContainer} onPress={() => setShowCountry(!showcountry)}>
-                            <ScrollView style={choose.ScrollContainer}>
-                                <Pressable>
-                                    <Text style={choose.Header}>Select Country</Text>
-                                    <Text style={choose.subHeader}> Current Country : </Text>
-                                    {CountriesList.map((data) => {
-                                        if (country == data.CountryCode)
-                                        return (
-                                            <Text style={choose.CurrentCountry}>
-                                                {data.CountryName}
-                                            </Text>
-                                        ) // 3000 IQ 😂
-                                    })}
-                                        {CountriesList.map((data, index) => {
-                                            if (country != data.CountryCode) // So the selected Country will not be shown as an option
-                                            return (
-                                                <OptionListItemCountry key={index} CountryCode={data.CountryCode} CountryName={data.CountryName} setTheCountry={(CountryCode) => setCountry(CountryCode)} />
-                                            )
-                                        })}
-                                </Pressable>
-                            </ScrollView>
-                    </Pressable>
-                </Modal>
-                    :<></>}
+            {showcountry ? 
+                <ShowCountry 
+                    country={country}
+                    settheCountry={(TheCountry) => setCountry(TheCountry)}
+                    setShow={(show) => setShowCountry(show)}
+                />
+            :<></>}
                     
                     {error ?
                         <Error ErrorOnRefresh={onRefresh} />
