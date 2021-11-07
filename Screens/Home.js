@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { ScrollView, StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList, Pressable, Modal } from 'react-native'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList, Pressable } from 'react-native'
 import axios from 'axios'
 
 import Topheader from '../Components/topheader'
@@ -28,9 +28,9 @@ function Home({ navigation }) {
 
     // Refreshing Option
 
-    const [refreshing, setRefreshing] = React.useState(false);
+    const [refreshing, setRefreshing] = useState(false);
 
-    const onRefresh = React.useCallback(() => {
+    const onRefresh = useCallback(() => {
         FetchTheNews();
         setRefreshing(true);
         setCountry(country);
@@ -113,38 +113,38 @@ function Home({ navigation }) {
 
 
             {showcategory ?
-                <ShowCategory 
-                    settheCategory={(somecategory) => setCategory(somecategory) }
+                <ShowCategory
+                    settheCategory={(somecategory) => setCategory(somecategory)}
                     setShow={(show) => setShowCategory(show)}
                 />
-            :<></>}
-            {showcountry ? 
-                <ShowCountry 
+                : <></>}
+            {showcountry ?
+                <ShowCountry
                     country={country}
                     settheCountry={(TheCountry) => setCountry(TheCountry)}
                     setShow={(show) => setShowCountry(show)}
                 />
-            :<></>}
-                    
-                    {error ?
-                        <Error ErrorOnRefresh={onRefresh} />
-                        :
-                        loading ?
-                            <LoadingCard />
-                            :
-                            <>
-                                <FlatList
-                                    data={newsData}
-                                    keyExtractor={(item, index) => 'key' + index}
-                                    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-                                    renderItem={({ item }) => { return (<Card item={item} />) }}
-                                    ref={flatlistRef}
+                : <></>}
 
-                                />
-                                <Pressable style={ScrollToTop.button} onPress={onPressFunction}>
-                                    <FontAwesomeIcon icon={faArrowUp} color={'white'} size={22} />
-                                </Pressable>
-                            </>
+            {error ?
+                <Error ErrorOnRefresh={onRefresh} />
+                :
+                loading ?
+                    <LoadingCard />
+                    :
+                    <>
+                        <FlatList
+                            data={newsData}
+                            keyExtractor={(item, index) => 'key' + index}
+                            refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                            renderItem={({ item }) => { return (<Card item={item} />) }}
+                            ref={flatlistRef}
+
+                        />
+                        <Pressable style={ScrollToTop.button} onPress={onPressFunction}>
+                            <FontAwesomeIcon icon={faArrowUp} color={'white'} size={22} />
+                        </Pressable>
+                    </>
             }
         </>
     )
