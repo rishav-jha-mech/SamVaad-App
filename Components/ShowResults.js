@@ -25,6 +25,7 @@ const ShowResults = (props) => {
                                 )
                         })}
                         {NoOfNewsList.map((data, index) => {
+                            if (props.NoOfNews != data.Number)
                             return(
                                 <OptionListItemResult 
                                     key={index}
@@ -49,8 +50,8 @@ const choose = StyleSheet.create({
     ScrollContainer: {
         backgroundColor: '#fff',
         width:'100%',
-        minHeight:'60%',
-        maxHeight:'73%',
+        minHeight:'65%',
+        maxHeight:'75%',
         borderRadius: 6,
         elevation:8,
     },
@@ -86,8 +87,8 @@ const choose = StyleSheet.create({
         color: '#fff',
         textAlign: 'center',
         fontWeight: '700',
-        textTransform: 'uppercase',
-        letterSpacing: 1
+        letterSpacing: 1,
+        textTransform:'capitalize'
     },
     Note:{
         fontWeight:'600',

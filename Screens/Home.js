@@ -32,8 +32,8 @@ function Home() {
     const [showResults, setshowResults] = useState(false)
     const [category, setCategory] = useState("general") // Default Category General
     const [country, setCountry] = useState("in")  // Default India In
-    const [results, setResults] = useState()
     const [noOfResults, setNoOfResults] = useState(20)
+    const [results, setResults] = useState(0)
 
     const [refreshing, setRefreshing] = useState(false);
 
@@ -42,12 +42,15 @@ function Home() {
         setRefreshing(true);
         setCountry(country);
         setCategory(category);
+        setResults(results);
+        setNoOfResults(noOfResults);
     }, []);
 
     // Refreshing Option
 
     const FetchTheNews = () => {
         setResults(0)
+        console.log("Before Fetching THe News The NOofResults = ", noOfResults)
         setLoading(true);
         setError(false);
         setRefreshing(true);
@@ -57,7 +60,7 @@ function Home() {
             url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/${noOfResults}}`,
         })
             .then((response) => {
-                // console.log(response.data);
+                // console.log(JSON.stringify(response.data,null,4));
                 setNewsData(response.data.articles);
                 setLoading(false);
                 setRefreshing(false);
@@ -85,7 +88,7 @@ function Home() {
     };
 
     // For Scroll To Top
-    
+    // console.log("Downhere => ",noOfResults)
     return (
         <>
             <Topheader 
