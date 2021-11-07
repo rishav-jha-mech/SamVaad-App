@@ -15,6 +15,11 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 // Fonts from Font Awesome
 
+// Lists of Countries and & Categories
+import CountriesList from '../Components/CountriesList'
+
+// Lists of Countries and & Categories
+
 function Home({navigation}) {
 
   const [loading,setLoading]= useState(false);
@@ -76,7 +81,9 @@ const onPressFunction = () => {
 };
 
 // For Scroll To Top
-const STORAGE_KEY = '@save_country'
+
+console.log(JSON.stringify(CountriesList,null,4))
+
   return (
     <>
       <Topheader SendToFounder={() => navigation.navigate("Founder")}/>
@@ -146,274 +153,15 @@ const STORAGE_KEY = '@save_country'
             <Text style={Times.timesX}>&times;</Text>
           </TouchableOpacity>
           </View>
-
-
-          <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("in")}>
-        <Text style={optionListItem.thetext}
-            >India
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ae")}>
-        <Text style={optionListItem.thetext}
-            >United Arab Emirates 
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ar")}>
-        <Text style={optionListItem.thetext}
-            >Argentina
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("at")}>
-        <Text style={optionListItem.thetext}
-            >Austria
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("au")}>
-        <Text style={optionListItem.thetext}
-            >Australia
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("be")}>
-        <Text style={optionListItem.thetext}
-            >Belgium
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("bg")}>
-        <Text style={optionListItem.thetext}
-            >Bulgaria
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("br")}>
-        <Text style={optionListItem.thetext}
-            >Brazil
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ca")}>
-        <Text style={optionListItem.thetext}
-            >Canada
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ch")}>
-        <Text style={optionListItem.thetext}
-            >Switzerland
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("cn")}>
-        <Text style={optionListItem.thetext}
-            >China
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("co")}>
-        <Text style={optionListItem.thetext}
-            >Colombia
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("cu")}>
-        <Text style={optionListItem.thetext}
-            >Cuba
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("cz")}>
-        <Text style={optionListItem.thetext}
-            >Czech
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("de")}>
-        <Text style={optionListItem.thetext}
-            >Germany
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("eg")}>
-        <Text style={optionListItem.thetext}
-            >Egypt
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("fr")}>
-        <Text style={optionListItem.thetext}
-            >France
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("gb")}>
-        <Text style={optionListItem.thetext}
-            >United Kingdom
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("gr")}>
-        <Text style={optionListItem.thetext}
-            >Greece
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("hk")}>
-        <Text style={optionListItem.thetext}
-            >Hong Kong
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("hu")}>
-        <Text style={optionListItem.thetext}
-            >Hungary
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("id")}>
-        <Text style={optionListItem.thetext}
-            >Indonesia
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ie")}>
-        <Text style={optionListItem.thetext}
-            >Ireland
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("il")}>
-        <Text style={optionListItem.thetext}
-            >Isreal
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("it")}>
-        <Text style={optionListItem.thetext}
-            >Italy
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("jp")}>
-        <Text style={optionListItem.thetext}
-            >Japan
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("kr")}>
-        <Text style={optionListItem.thetext}
-            >South Korea
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("lt")}>
-        <Text style={optionListItem.thetext}
-            >Lithuania
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("lv")}>
-        <Text style={optionListItem.thetext}
-            >Latvia
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ma")}>
-        <Text style={optionListItem.thetext}
-            >Morocco
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("mx")}>
-        <Text style={optionListItem.thetext}
-            >Mexico
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("my")}>
-        <Text style={optionListItem.thetext}
-            >Malaysia
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ng")}>
-        <Text style={optionListItem.thetext}
-            >Nigeria
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("nl")}>
-        <Text style={optionListItem.thetext}
-            >Netherlands
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("no")}>
-        <Text style={optionListItem.thetext}
-            >Norway
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("nz")}>
-        <Text style={optionListItem.thetext}
-            >New Zealand
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ph")}>
-        <Text style={optionListItem.thetext}
-            >Phillipines
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("pl")}>
-        <Text style={optionListItem.thetext}
-            >Poland
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("pt")}>
-        <Text style={optionListItem.thetext}
-            >Portugal
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ro")}>
-        <Text style={optionListItem.thetext}
-            >Romania
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("rs")}>
-        <Text style={optionListItem.thetext}
-            >Serbia
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ru")}>
-        <Text style={optionListItem.thetext}
-            >Russia
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("sa")}>
-        <Text style={optionListItem.thetext}
-            >South Africa
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("se")}>
-        <Text style={optionListItem.thetext}
-            >Sweden
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("sg")}>
-        <Text style={optionListItem.thetext}
-            >Singapore
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("si")}>
-        <Text style={optionListItem.thetext}
-            >Slovenia
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("sk")}>
-        <Text style={optionListItem.thetext}
-            >Slovakia
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("th")}>
-        <Text style={optionListItem.thetext}
-            >Thailand
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("tr")}>
-        <Text style={optionListItem.thetext}
-            >Turkey
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("tw")}>
-        <Text style={optionListItem.thetext}
-            >Taiwan
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ua")}>
-        <Text style={optionListItem.thetext}
-            >Ukraine
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("us")}>
-        <Text style={optionListItem.thetext}
-            >United States of America
-        </Text>
-        </TouchableOpacity>
-    <TouchableOpacity style={optionListItem.butt} onPress={()=> setCountry("ve")}>
-        <Text style={optionListItem.thetext}
-            >Venezuela
-        </Text>
-        </TouchableOpacity>
-
+            {CountriesList.map((data,index) =>{
+                return(
+                    <TouchableOpacity key={index} style={optionListItem.butt} onPress={()=> setCountry(data.CountryCode)}>
+                    <Text style={optionListItem.thetext}>
+                        {data.CountryName}
+                    </Text>
+                  </TouchableOpacity>
+                )
+            })}
 
         </ScrollView>
         :
