@@ -15,13 +15,10 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 
 // Fonts from Font Awesome
 
-// Lists of Countries and & Categories
-import CountriesList from '../Components/CountriesList'
-import CategoriesList from '../Components/CategoriesList'
-import OptionListItemCountry from '../Components/OptionListItemCountry'
-import OptionListItemCategory from '../Components/OptionListItemCategory'
+// Container of Countries and & Categories
 import ShowCountry from '../Components/ShowCountry'
-// Lists of Countries and & Categories
+import ShowCategory from '../Components/ShowCategory'
+// Container of Countries and & Categories
 
 function Home({ navigation }) {
 
@@ -56,7 +53,7 @@ function Home({ navigation }) {
         axios({
             headers: { 'Content-Type': 'application/json', },
             method: 'GET',
-            url: `https://samvaad-api.heraokuapp.com/api/${country}/${category}/20}`,
+            url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/20}`,
         })
             .then((response) => {
                 // console.log(response.data);
@@ -65,8 +62,8 @@ function Home({ navigation }) {
                 setRefreshing(false);
             })
             .catch((error) => {
-                // setError(true)
-                // console.error(error)
+                setError(true)
+                console.error(error)
             })
     }
 
@@ -93,7 +90,7 @@ function Home({ navigation }) {
                 <View style={Select.container}>
                     <TouchableOpacity
                         style={Select.button}
-                        onPress={() => { setShowCategory(!showcategory); setShowCountry(false) }}
+                        onPress={() => setShowCategory(!showcategory)}
                     >
                         <Text
                             style={Select.thetext}>
@@ -103,7 +100,7 @@ function Home({ navigation }) {
 
                     <TouchableOpacity
                         style={Select.button}
-                        onPress={() => { setShowCountry(!showcountry); setShowCategory(false) }}
+                        onPress={() => setShowCountry(!showcountry)}
                     >
                         <Text
                             style={Select.thetext}
@@ -116,24 +113,10 @@ function Home({ navigation }) {
 
 
             {showcategory ?
-                <Modal 
-                    visible={true}
-                    transparent={true}
-                    animationType={'fade'}
-                >
-                    <Pressable style={choose.innerContainer} onPress={() => setShowCategory(!showcategory)}>
-                        <ScrollView style={choose.ScrollContainer}>
-                            <Pressable>
-                                <Text style={choose.Header}>Select Category</Text>
-                                    {CategoriesList.map((data, index) => {
-                                        return (
-                                            <OptionListItemCategory key={index} data={data} setTheCategory={(TheCategory) => setCategory(TheCategory)} />
-                                        )
-                                    })}
-                            </Pressable>
-                        </ScrollView>
-                    </Pressable>
-                </Modal>
+                <ShowCategory 
+                    settheCategory={(somecategory) => setCategory(somecategory) }
+                    setShow={(show) => setShowCategory(show)}
+                />
             :<></>}
             {showcountry ? 
                 <ShowCountry 
@@ -183,54 +166,6 @@ const ScrollToTop = StyleSheet.create({
         elevation: 10
     },
 });
-
-const choose = StyleSheet.create({
-    ScrollContainer: {
-        backgroundColor: '#fff',
-        width:'100%',
-        minHeight:'75%',
-        maxHeight:'81%',
-        borderRadius: 6,
-        elevation:8,
-    },
-    innerContainer:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'rgba(0,0,0,0.2)',
-        paddingHorizontal: 14
-    },
-    Header:{
-        fontSize: 32,
-        fontWeight:'700',
-        marginVertical: 20,
-        color:'#000',
-        textAlign:'center',
-        letterSpacing:0.5
-    },
-    subHeader:{
-        marginHorizontal:24,
-        fontWeight:'700',
-        color:'#333',
-        marginVertical:6,
-        fontSize:18
-    },
-    CurrentCountry:{
-        backgroundColor:'#ff156f',
-        borderRadius: 8,
-        paddingVertical: 16,
-        marginVertical: 8,
-        marginHorizontal: 24,
-        fontSize: 16,
-        color: '#fff',
-        textAlign: 'center',
-        fontWeight: '700',
-        textTransform: 'uppercase',
-        letterSpacing: 1
-    }
-})
-
-
 
 const Select = StyleSheet.create({
     container: {
