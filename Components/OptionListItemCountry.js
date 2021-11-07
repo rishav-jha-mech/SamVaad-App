@@ -15,7 +15,6 @@ export default OptionListItemCountry
 
 const styles = StyleSheet.create({
     butt: {
-        backgroundColor: 'rgba(255,255,255,0.5)',
         borderRadius: 8,
         paddingVertical: 16,
         backgroundColor:'#6f00ff',

@@ -96,7 +96,7 @@ function Home({ navigation }) {
                     >
                         <Text
                             style={Select.thetext}>
-                            {showcategory ? 'Categories' : `${category}`}
+                            {category}
                         </Text>
                     </TouchableOpacity>
 
@@ -107,7 +107,7 @@ function Home({ navigation }) {
                         <Text
                             style={Select.thetext}
                         >
-                            {showcountry ? 'Countries' : `${country}`}
+                            {country}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -118,6 +118,7 @@ function Home({ navigation }) {
                 <Modal 
                     visible={true}
                     transparent={true}
+                    animationType={'fade'}
                 >
                     <Pressable style={choose.innerContainer} onPress={() => setShowCategory(!showcategory)}>
                         <ScrollView style={choose.ScrollContainer}>
@@ -137,12 +138,23 @@ function Home({ navigation }) {
                 <Modal 
                     visible={true}
                     transparent={true}
+                    animationType={'fade'}
                 >
                     <Pressable style={choose.innerContainer} onPress={() => setShowCountry(!showcountry)}>
                             <ScrollView style={choose.ScrollContainer}>
                                 <Pressable>
                                     <Text style={choose.Header}>Select Country</Text>
+                                    <Text style={choose.subHeader}> Current Country : </Text>
+                                    {CountriesList.map((data) => {
+                                        if (country == data.CountryCode)
+                                        return (
+                                            <Text style={choose.CurrentCountry}>
+                                                {data.CountryName}
+                                            </Text>
+                                        ) // 3000 IQ 😂
+                                    })}
                                         {CountriesList.map((data, index) => {
+                                            if (country != data.CountryCode) // So the selected Country will not be shown as an option
                                             return (
                                                 <OptionListItemCountry key={index} CountryCode={data.CountryCode} CountryName={data.CountryName} setTheCountry={(CountryCode) => setCountry(CountryCode)} />
                                             )
@@ -217,6 +229,26 @@ const choose = StyleSheet.create({
         color:'#000',
         textAlign:'center',
         letterSpacing:0.5
+    },
+    subHeader:{
+        marginHorizontal:24,
+        fontWeight:'700',
+        color:'#333',
+        marginVertical:6,
+        fontSize:18
+    },
+    CurrentCountry:{
+        backgroundColor:'#ff156f',
+        borderRadius: 8,
+        paddingVertical: 16,
+        marginVertical: 8,
+        marginHorizontal: 24,
+        fontSize: 16,
+        color: '#fff',
+        textAlign: 'center',
+        fontWeight: '700',
+        textTransform: 'uppercase',
+        letterSpacing: 1
     }
 })
 
