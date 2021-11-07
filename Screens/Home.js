@@ -25,8 +25,12 @@ function Home({ navigation }) {
     const [loading, setLoading] = useState(false);
     const [newsData, setNewsData] = useState([]);
     const [error, setError] = useState(false);
-
-    // Refreshing Option
+    const [showcountry, setShowCountry] = useState(false)
+    const [showcategory, setShowCategory] = useState(false)
+    const [category, setCategory] = useState("general") // Default Category General
+    const [country, setCountry] = useState("in")  // Default India In
+    const [showup,setShowup] = useState(false) // Hook for arrow up button
+    const [results, setResults] = useState()
 
     const [refreshing, setRefreshing] = useState(false);
 
@@ -39,16 +43,8 @@ function Home({ navigation }) {
 
     // Refreshing Option
 
-
-    const [showcountry, setShowCountry] = useState(false)
-    const [showcategory, setShowCategory] = useState(false)
-
-    const [category, setCategory] = useState("general") // Default Category General
-    const [country, setCountry] = useState("in")  // Default India In
-
-    const [showup,setShowup] = useState(false) // Hook for arrow up button
-
     const FetchTheNews = () => {
+        setResults(0)
         setLoading(true);
         setError(false);
         setRefreshing(true);
@@ -62,6 +58,7 @@ function Home({ navigation }) {
                 setNewsData(response.data.articles);
                 setLoading(false);
                 setRefreshing(false);
+                setResults(response.data.articles.length)
             })
             .catch((error) => {
                 setError(true)
@@ -86,7 +83,10 @@ function Home({ navigation }) {
     // For Scroll To Top
     return (
         <>
-            <Topheader SendToFounder={() => navigation.navigate("Founder")} />
+            <Topheader 
+              results={results}
+              isError ={error}
+            />
             {error ? <></> :
                 <View style={Select.container}>
                     <TouchableOpacity

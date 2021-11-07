@@ -1,17 +1,23 @@
 import React from 'react'
 import { StyleSheet, Text, Pressable, Image } from 'react-native'
 
-export default function topheader( { SendToFounder } ) {
-    const callBack = () =>{
-        SendToFounder();
-    }
+export default function topheader(props) {
 
     return (
-        <Pressable style={styles.Container} onPress={() => callBack()}>
+        <Pressable style={styles.Container}>
+
             <Image style={styles.logo}
                 source = {{ uri:'https://samvaad.pages.dev/SamVaadLogo.png' }}
             />
+
             <Text style={styles.Samvaad}>SamVaad</Text>
+
+            {props.isError ? <></> : // If there is any error this badge will not be shown
+                <Pressable style={styles.resultsContainer}>
+                    <Text style={styles.resultsText}>{props.results}</Text>
+                </Pressable>
+            }
+            
         </Pressable>
     )
 }
@@ -21,7 +27,7 @@ const styles = StyleSheet.create({
     Container:{
         padding:15,
         backgroundColor: '#fff',
-        elevation: 2
+        elevation: 2,
     },
     logo:{
         position:'absolute',
@@ -38,6 +44,23 @@ const styles = StyleSheet.create({
         letterSpacing: 2,
         textShadowColor: 'rgba(0, 0, 0, 0.05)',
         textShadowOffset: {width: -1, height: 1},
-        textShadowRadius:15
+        textShadowRadius:15,
+    },
+    resultsContainer:{
+        position:'absolute',
+        top:'38%',
+        right: 14,
+        backgroundColor:'#6f00ff',
+        width:  46,
+        paddingHorizontal:8,
+        paddingVertical:10,
+        borderRadius: 100,
+    },
+    resultsText:{
+        fontSize: 19,
+        fontWeight:'700',
+        textAlign:'center',
+        textAlignVertical:'center',
+        color:'#fff'
     }
 })
