@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { StyleSheet, Text, View, RefreshControl, TouchableOpacity, FlatList, Pressable } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios'
 
 import Topheader from '../Components/topheader'
@@ -21,8 +22,30 @@ import ShowCategory from '../Components/ShowCategory'
 import ShowResults from '../Components/ShowResults'
 // Container of Countries and & Categories
 
+const storeCountry = async (value) => {
+    try {
+      await AsyncStorage.setItem('@country', value)
+    //   console.log('STORED COUNTRY => ',value)
+      return value
+    } catch (e) {
+      // saving error
+    //   console.error(e)
+    }
+  }
+const getCountry = async() => {
+    try {
+        const value = await AsyncStorage.getItem('@country')
+        if(value !== null) {
+          // value previously stored
+        //   console.log('COUNTRY => ',value)
+        return value
+        }
+    } catch(e) {
+        // error reading value
+        // console.error(e)
+    }
+}
 function Home() {
-
     const [loading, setLoading] = useState(false);
     const [newsData, setNewsData] = useState([]);
     const [error, setError] = useState(false);
@@ -47,14 +70,12 @@ function Home() {
     // Refreshing Option
 
     const FetchTheNews = () => {
-        console.log("Before Fetching THe News The numberOfNews = ", numberOfNews)
         setLoading(true);
         setError(false);
         setRefreshing(true);
         axios({
             headers: { 'Content-Type': 'application/json', },
             method: 'GET',
-            // url: `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&pageSize=${numberOfNews}&apiKey=626b4e8c1a044baa8bb856256dba2315`,
             url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/${numberOfNews}`
         })
             .then((response) => {
@@ -65,12 +86,15 @@ function Home() {
             })
             .catch((error) => {
                 setError(true)
-                console.error(error)
+                // console.error(error)
             })
     }
 
     useEffect(() => {
-        FetchTheNews();
+        getCountry().then(value =>{
+            setCountry(value)
+            FetchTheNews();
+        })
         setShowCategory(false);
         setShowCountry(false);
         setshowResults(false);
@@ -85,7 +109,6 @@ function Home() {
     };
 
     // For Scroll To Top
-    console.log(numberOfNews)
     return (
         <>
             <Topheader 
@@ -128,7 +151,7 @@ function Home() {
             {showcountry ?
                 <ShowCountry
                     country={country}
-                    settheCountry={(TheCountry) => setCountry(TheCountry)}
+                    settheCountry={(TheCountry) => {setCountry(TheCountry);storeCountry(TheCountry)}}
                     setShow={(show) => setShowCountry(show)}
                 />
                 : <></>}
@@ -163,7 +186,7 @@ function Home() {
                             
                             }
                         />
-                        {showup ? 
+                        {showup ?
                             <Pressable style={ScrollToTop.button} onPress={scrollToTop}>
                                 <FontAwesomeIcon icon={faArrowUp} color={'white'} size={22} />
                             </Pressable>
