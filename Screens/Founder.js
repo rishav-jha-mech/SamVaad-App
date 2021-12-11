@@ -18,7 +18,7 @@ const Founder = ({ navigation }) => {
     const shareSamVaad = async () => {
         try {
           const result = await Share.share({
-            message:"Visit the website to get Latest News From 7 categories accross 50+ around in the world \n \n https://samvaad.pages.dev\n\n*Our App is Available now, you can download it directly from our website*",
+            message:"Visit the website to get Latest News From 7 categories across 50+ countries around in the world \n \nhttps://samvaad.pages.dev\n\n*Our App is Available now, you can download it directly from our website*",
           });
           if (result.action === Share.sharedAction) {
             if (result.activityType) {

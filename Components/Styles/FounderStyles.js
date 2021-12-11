@@ -159,9 +159,9 @@ const styles = StyleSheet.create({
     },
     Thebuttons:{
         backgroundColor: '#0a192f',
-        paddingVertical:10,
+        paddingVertical:16,
         paddingHorizontal:20,
-        marginVertical:5,
+        marginVertical:10,
         marginHorizontal: 10,
         borderRadius:8,
         justifyContent:'center',

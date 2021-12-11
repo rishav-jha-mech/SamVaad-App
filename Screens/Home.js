@@ -39,6 +39,8 @@ const getCountry = async() => {
           // value previously stored
         //   console.log('COUNTRY => ',value)
         return value
+        }else{
+            return "in"   // Default India In
         }
     } catch(e) {
         // error reading value
@@ -54,7 +56,7 @@ function Home() {
     const [showup,setShowup] = useState(false) // Hook for arrow up button
     const [showResults, setshowResults] = useState(false)
     const [category, setCategory] = useState("general") // Default Category General
-    const [country, setCountry] = useState("in")  // Default India In
+    const [country, setCountry] = useState()
     const [numberOfNews, setnumberOfNews] = useState(20)
 
     const [refreshing, setRefreshing] = useState(false);
@@ -73,10 +75,15 @@ function Home() {
         setLoading(true);
         setError(false);
         setRefreshing(true);
+        getCountry().then(value =>{
+        // Initially th country will be "in" cuz the country will be null in asyncStorage
+        // But after any country is selected the asyncStorage will return the previous selected country
+        // Here we already havee a hook name country so using "value" is much appropiate here
+        setCountry(value)
         axios({
             headers: { 'Content-Type': 'application/json', },
             method: 'GET',
-            url: `https://samvaad-api.herokuapp.com/api/${country}/${category}/${numberOfNews}`
+            url: `https://samvaad-api.herokuapp.com/api/${value}/${category}/${numberOfNews}`
         })
             .then((response) => {
                 // console.log(JSON.stringify(response.data,null,4));
@@ -87,14 +94,12 @@ function Home() {
             .catch((error) => {
                 setError(true)
                 // console.error(error)
-            })
+            })    
+        })
     }
 
     useEffect(() => {
-        getCountry().then(value =>{
-            setCountry(value)
-            FetchTheNews();
-        })
+        FetchTheNews();
         setShowCategory(false);
         setShowCountry(false);
         setshowResults(false);

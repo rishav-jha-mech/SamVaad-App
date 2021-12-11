@@ -1,17 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View,Image, Pressable, Share, TouchableOpacity, } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 
 // Fonts from Font Awesome
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faAlignRight, faShareAlt } from '@fortawesome/free-solid-svg-icons'
+import { faShareAlt } from '@fortawesome/free-solid-svg-icons'
 
 // Fonts from Font Awesome
 
 export default function Card({item}) {
     const navigation = useNavigation();
     
+    const FallBackThumbnail = require('../Components/images/img404.webp')
+
+    const [img404, setImg404] = useState(false)
+
+    // let THUMBNAIL = img404 ? FallBackThumbnail : ImageFromApi
+
     // To share the Website to other platforms
     const shareNews = async (newsURL,newsTITLE) => {
         try {
@@ -52,7 +58,8 @@ export default function Card({item}) {
             </TouchableOpacity>
             <Image 
                 style={styles.thumbnail}
-                source={{uri: item.urlToImage }}
+                source={img404 ? FallBackThumbnail : {uri : item.urlToImage}}
+                onError={() => setImg404(true)}
             />
 
         <Text style={styles.title} numberOfLines={3}>
@@ -74,11 +81,12 @@ const styles = StyleSheet.create({
         borderBottomWidth:1,
     },
     thumbnail:{
-        minHeight:200,
+        height:210,
         width:'100%',
         borderRadius: 10,
         marginVertical: 5,
-        backgroundColor:'#ddd',
+        backgroundColor:'#fcf8f7',
+        resizeMode:'cover',
     },
     title:{
         fontWeight:'600',
