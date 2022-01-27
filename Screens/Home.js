@@ -26,27 +26,11 @@ const storeCountry = async (value) => {
     try {
       await AsyncStorage.setItem('@country', value)
     //   console.log('STORED COUNTRY => ',value)
-      return value
     } catch (e) {
       // saving error
     //   console.error(e)
     }
   }
-const getCountry = async() => {
-    try {
-        const value = await AsyncStorage.getItem('@country')
-        if(value !== null) {
-          // value previously stored
-        //   console.log('COUNTRY => ',value)
-        return value
-        }else{
-            return "in"   // Default India In
-        }
-    } catch(e) {
-        // error reading value
-        // console.error(e)
-    }
-}
 function Home() {
     const [loading, setLoading] = useState(false);
     const [newsData, setNewsData] = useState([]);
@@ -56,45 +40,61 @@ function Home() {
     const [showup,setShowup] = useState(false) // Hook for arrow up button
     const [showResults, setshowResults] = useState(false)
     const [category, setCategory] = useState("general") // Default Category General
-    const [country, setCountry] = useState()
+    const [country, setCountry] = useState("in")
+    const [dummy,setDummy] = useState("Loading")
     const [numberOfNews, setnumberOfNews] = useState(20)
 
+    const getCountry = async() => {
+        try {
+            const value = await AsyncStorage.getItem('@country')
+            if(value !== null) {
+              // value previously stored
+            //   console.log('COUNTRY => ',value)
+            return value
+            }else{
+                return country
+            }
+        } catch(e) {
+            // error reading value
+            // console.error(e)
+        }
+    }
     const [refreshing, setRefreshing] = useState(false);
 
     const onRefresh = useCallback(() => {
         FetchTheNews();
         setRefreshing(true);
-        setCountry(country);
         setCategory(category);
         setnumberOfNews(numberOfNews);
     }, []);
 
     // Refreshing Option
-
+    var x = ""
     const FetchTheNews = () => {
         setLoading(true);
         setError(false);
         setRefreshing(true);
+
         getCountry().then(value =>{
-        // Initially th country will be "in" cuz the country will be null in asyncStorage
-        // But after any country is selected the asyncStorage will return the previous selected country
-        // Here we already havee a hook name country so using "value" is much appropiate here
-        setCountry(value)
-        axios({
-            headers: { 'Content-Type': 'application/json', },
-            method: 'GET',
-            url: `https://samvaad-api.herokuapp.com/api/${value}/${category}/${numberOfNews}`
-        })
-            .then((response) => {
-                // console.log(JSON.stringify(response.data,null,4));
-                setNewsData(response.data.articles);
-                setLoading(false);
-                setRefreshing(false);
+            console.log('THE VALUE => ',value)
+            setDummy(value)
+            axios({
+                method: 'GET',
+                url: `https://samvaad-api.herokuapp.com/api/${value}/${category}/${numberOfNews}`
             })
-            .catch((error) => {
-                setError(true)
-                // console.error(error)
-            })    
+                .then((response) => {
+                    // console.log(JSON.stringify(response.data,null,4));
+                    setNewsData(response.data.articles);
+                    setLoading(false);
+                    setRefreshing(false);
+                })
+                .catch((error) => {
+                    setError(true)
+                    console.error(error)
+                    console.error(value)
+                })    
+        }).catch(err =>{
+            console.info(err)
         })
     }
 
@@ -103,7 +103,7 @@ function Home() {
         setShowCategory(false);
         setShowCountry(false);
         setshowResults(false);
-    }, [country, category, numberOfNews, onRefresh]);
+    }, [country,category, numberOfNews, onRefresh]);
     
     // For Scroll To Top
 
@@ -140,7 +140,7 @@ function Home() {
                         <Text
                             style={Select.thetext}
                         >
-                            {country}
+                            {dummy ? dummy : 'Loading'}
                         </Text>
                     </TouchableOpacity>
                 </View>

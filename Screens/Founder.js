@@ -104,15 +104,22 @@ const Founder = ({ navigation }) => {
                         <Text style={styles.skillsElement}>Tailwind</Text>
                         <Text style={styles.skillsElement}>React</Text>
                         <Text style={styles.skillsElement}>React Native</Text>
+                        <Text style={styles.skillsElement}>Flutter</Text>
+                        <Text style={styles.skillsElement}>Express</Text>
                         <Text style={styles.skillsElement}>Flask</Text>
                         <Text style={styles.skillsElement}>Django</Text>
                         <Text style={styles.skillsElement}>SQLite3</Text>
+                        <Text style={styles.skillsElement}>Mongodb</Text>
+                        <Text style={styles.skillsElement}>PostgreSQL</Text>
                         <Text style={styles.skillsElement}>GIT</Text>
                         <Text style={styles.skillsElement}>Heroku</Text>
+                        <Text style={styles.skillsElement}>AWS</Text>
+                        <Text style={styles.skillsElement}>Google Cloud</Text>
                         <Text style={styles.skillsElement}>Python</Text>
                         <Text style={styles.skillsElement}>Java</Text>
                         <Text style={styles.skillsElement}>C</Text>
                         <Text style={styles.skillsElement}>C++</Text>
+                        <Text style={styles.skillsElement}>Dart</Text>
                     </View>
                 </View>
                 <View style={[styles.Children2,styles.lastContainer]}>
