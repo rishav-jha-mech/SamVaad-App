@@ -155,7 +155,7 @@ function Home() {
                 : <></>}
             {showcountry ?
                 <ShowCountry
-                    country={country}
+                    country={dummy}
                     settheCountry={(TheCountry) => {setCountry(TheCountry);storeCountry(TheCountry)}}
                     setShow={(show) => setShowCountry(show)}
                 />
