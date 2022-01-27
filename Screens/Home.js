@@ -76,7 +76,7 @@ function Home() {
         setRefreshing(true);
 
         getCountry().then(value =>{
-            console.log('THE VALUE => ',value)
+            // console.log('THE VALUE => ',value)
             setDummy(value)
             axios({
                 method: 'GET',
@@ -90,11 +90,11 @@ function Home() {
                 })
                 .catch((error) => {
                     setError(true)
-                    console.error(error)
-                    console.error(value)
+                    // console.error(error)
+                    // console.error(value)
                 })    
         }).catch(err =>{
-            console.info(err)
+            // console.info(err)
         })
     }
 

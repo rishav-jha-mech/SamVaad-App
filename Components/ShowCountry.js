@@ -6,7 +6,7 @@ import OptionListItemCountry from './OptionListItemCountry'
 
 const ShowCountry = (props) => {
 
-    console.log(props.country)
+    // console.log(props.country)
 
     return (
         <Modal
